@@ -41,6 +41,17 @@ body {
   /* Horizontal rule */
 
   --hr-thickness: 1px;
+
+  /* Radiuses */
+
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 8px;
+  --radius-xl: 12px;
+  --code-radius: var(--radius-m);
+  --image-radius: var(--radius-m);
+  --table-radius: var(--radius-m);
+  --table-selection-border-radius: var(--table-radius);
 }
 
 /* Header underline */
@@ -91,4 +102,48 @@ body {
     font-size: 1rem;
     background-color: var(--background-primary);
   }
+}
+
+/* Inline code keeps a smaller radius than code blocks */
+.markdown-rendered :not(pre) > code,
+.cm-s-obsidian .cm-inline-code {
+  --code-radius: var(--radius-s);
+}
+
+/* External images in reading view (embeds use --image-radius already) */
+.markdown-rendered img {
+  border-radius: var(--image-radius);
+}
+
+/* Table corners */
+.markdown-rendered table {
+  border-collapse: separate;
+  border-spacing: 0;
+
+  /* Avoid doubled inner borders: each cell draws only its right and bottom
+     border, Obsidian's header and first-column rules add the outer edges */
+  & :is(th, td) {
+    border-top-width: 0;
+    border-left-width: 0;
+  }
+
+  & thead tr > th:first-child {
+    border-top-left-radius: var(--table-radius);
+  }
+
+  & thead tr > th:last-child {
+    border-top-right-radius: var(--table-radius);
+  }
+
+  & tbody tr:last-child > td:first-child {
+    border-bottom-left-radius: var(--table-radius);
+  }
+
+  & tbody tr:last-child > td:last-child {
+    border-bottom-right-radius: var(--table-radius);
+  }
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget.is-selected table::after {
+  border-radius: var(--table-radius);
 }

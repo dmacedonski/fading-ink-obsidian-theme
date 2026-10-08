@@ -37,6 +37,10 @@ body {
   --h6-weight: var(--h4-weight);
   --h6-size: var(--h4-size);
   --h6-line-height: var(--h4-line-height);
+
+  /* Horizontal rule */
+
+  --hr-thickness: 1px;
 }
 
 /* Header underline */
@@ -50,4 +54,41 @@ body {
   background-size: 100% var(--border-width);
   background-position: left bottom 0.2em;
   background-repeat: no-repeat;
+}
+
+/* Horizontal rule */
+.markdown-rendered :is(hr),
+.markdown-source-view.mod-cm6 .hr hr {
+  display: grid;
+  place-items: center;
+  border: none;
+
+  &::before,
+  &::after {
+    grid-area: 1 / 1;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: var(--hr-thickness);
+    background-image: linear-gradient(
+      to right,
+      transparent 10%,
+      var(--color-accent) 40%,
+      var(--color-accent) 60%,
+      transparent 90%
+    );
+  }
+
+  &::after {
+    content: '§';
+    display: grid;
+    place-items: center;
+    transform: rotate(45deg);
+    padding-inline: 0.5rem;
+    color: var(--text-error);
+    font-size: 1rem;
+    background-color: var(--background-primary);
+  }
 }

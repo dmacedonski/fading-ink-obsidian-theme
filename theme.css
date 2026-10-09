@@ -243,3 +243,12 @@ body {
     height: auto;
   }
 }
+
+/* Properties: dashed top and bottom border separates them from the content.
+   Limited to notes, the sidebar properties view stays unchanged */
+.markdown-source-view .metadata-container,
+.markdown-preview-view .metadata-container {
+  --metadata-border-width: var(--border-width) 0;
+
+  border-style: dashed;
+}

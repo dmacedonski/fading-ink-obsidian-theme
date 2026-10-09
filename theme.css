@@ -55,11 +55,16 @@ body {
 
   /* Tables */
 
+  --table-border-width: var(--border-width);
   --table-add-button-border-width: 0;
   --table-add-button-background: var(--background-modifier-hover);
   --table-add-button-gap: var(--size-2-2);
   --table-cell-padding-y: var(--size-4-2);
   --table-header-border-color: transparent;
+
+  /* Code blocks */
+
+  --code-border-width: var(--border-width);
 }
 
 /* Header underline */
@@ -116,6 +121,30 @@ body {
 .markdown-rendered :not(pre) > code,
 .cm-s-obsidian .cm-inline-code {
   --code-radius: var(--radius-s);
+}
+
+/* Callouts tint the table border, so code blocks follow it there as well */
+.callout {
+  --code-border-color: var(--table-border-color);
+}
+
+/* Roomier code blocks in reading view */
+.markdown-rendered pre {
+  padding: var(--size-4-4) var(--size-4-5);
+}
+
+/* Code block language label in reading view. The language is only available
+   as the "language-*" class that Prism adds to <pre>, so the whole class is
+   shown in a monospace font and the 9-character prefix is clipped off */
+.markdown-rendered pre[class^='language-']::after {
+  content: attr(class);
+  position: absolute;
+  right: var(--size-4-2);
+  bottom: var(--size-2-2);
+  font-family: var(--font-monospace);
+  font-size: var(--font-smallest);
+  color: var(--text-faint);
+  clip-path: inset(0 0 0 9ch);
 }
 
 /* External images in reading view (embeds use --image-radius already) */

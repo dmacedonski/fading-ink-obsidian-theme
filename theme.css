@@ -65,6 +65,12 @@ body {
   /* Code blocks */
 
   --code-border-width: var(--border-width);
+
+  /* Links */
+
+  --link-background-opacity: 25%;
+  --link-background-height: 0.35em;
+  --link-external-color-hover: var(--link-external-color);
 }
 
 /* Header underline */
@@ -251,4 +257,91 @@ body {
   --metadata-border-width: var(--border-width) 0;
 
   border-style: dashed;
+}
+
+/* Obsidian gives internal links in highlights the text color in reading
+   view. Live Preview keeps the link color (see the .cm-underline color rule
+   below), so reading view does the same */
+.markdown-rendered mark .internal-link {
+  color: var(--link-color);
+}
+
+/* Internal and external links: a thick line in a translucent shade of the
+   link color sits behind the text and grows to cover it on hover.
+   Translucency keeps it lighter than the text on light backgrounds and
+   darker on dark ones. In Live Preview the text is in .cm-underline, and
+   links to missing notes are wrapped in .is-unresolved. Links to missing
+   notes and links in properties keep Obsidian's look */
+.markdown-rendered .internal-link:not(.is-unresolved, .metadata-container *),
+.markdown-rendered .external-link:not(.metadata-container *),
+.markdown-source-view.mod-cm6 :is(.cm-link, .cm-url) .cm-underline,
+.markdown-source-view.mod-cm6
+  .cm-hmd-internal-link
+  .cm-underline:not(.is-unresolved *) {
+  --link-background: color-mix(
+    in oklch,
+    currentcolor var(--link-background-opacity),
+    transparent
+  );
+
+  background-image: linear-gradient(
+    var(--link-background),
+    var(--link-background)
+  );
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% var(--link-background-height);
+  transition-property: opacity, background-size;
+  transition-duration: var(--anim-duration-fast);
+  transition-timing-function: ease-in-out;
+
+  /* Like Obsidian, skip hover on touch screens where it sticks after a tap */
+  @media (hover: hover) {
+    &:hover {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+/* The lighter hover color would blend into the expanded line, so internal
+   links keep their color (external links do so through the body variables).
+   Reading view sets the hover color on the link itself, Live Preview on the
+   outer span that .cm-underline inherits from */
+.markdown-rendered .internal-link:not(.is-unresolved, .metadata-container *) {
+  --link-color-hover: var(--link-color);
+}
+
+.markdown-source-view.mod-cm6
+  .cm-hmd-internal-link
+  .cm-underline:not(.is-unresolved *) {
+  color: var(--link-color);
+}
+
+/* External link icon in reading view. Obsidian draws a gray icon as
+   a background, which the line above replaces, so it is redrawn after the
+   text in the link color (Lucide "external-link" icon, ISC license).
+   Like Obsidian, it's mirrored in RTL and hidden in print and web viewer */
+.markdown-rendered .external-link:not(.metadata-container *) {
+  padding-inline-end: 0;
+}
+
+.markdown-rendered .external-link:not(.metadata-container *)::after {
+  content: '';
+  display: inline-block;
+  width: 0.825em;
+  height: 0.825em;
+  margin-inline-start: 0.15em;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.markdown-rendered .external-link:not(.metadata-container *):dir(rtl)::after {
+  transform: scaleX(-1);
+}
+
+:is(.print, .webviewer-content)
+  .markdown-rendered
+  .external-link:not(.metadata-container *)::after {
+  display: none;
 }

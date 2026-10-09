@@ -52,6 +52,14 @@ body {
   --image-radius: var(--radius-m);
   --table-radius: var(--radius-m);
   --table-selection-border-radius: var(--table-radius);
+
+  /* Tables */
+
+  --table-add-button-border-width: 0;
+  --table-add-button-background: var(--background-modifier-hover);
+  --table-add-button-gap: var(--size-2-2);
+  --table-cell-padding-y: var(--size-4-2);
+  --table-header-border-color: transparent;
 }
 
 /* Header underline */
@@ -115,23 +123,33 @@ body {
   border-radius: var(--image-radius);
 }
 
-/* Table corners */
+/* Tables */
 .markdown-rendered table {
+  width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 
-  /* Avoid doubled inner borders: each cell draws only its right and bottom
-     border, Obsidian's header and first-column rules add the outer edges */
   & :is(th, td) {
+    padding-block: var(--table-cell-padding-y);
+
+    /* Avoid doubled inner borders: each cell draws only its right and bottom
+       border, Obsidian's first-column rules and the first body row add the
+       outer edges */
     border-top-width: 0;
     border-left-width: 0;
   }
 
-  & thead tr > th:first-child {
+  /* The header borders are transparent (they keep their width so the header
+     text stays aligned with the body), so the body draws its own top edge */
+  & tbody tr:first-child > td {
+    border-top-width: var(--table-border-width);
+  }
+
+  & tbody tr:first-child > td:first-child {
     border-top-left-radius: var(--table-radius);
   }
 
-  & thead tr > th:last-child {
+  & tbody tr:first-child > td:last-child {
     border-top-right-radius: var(--table-radius);
   }
 
@@ -144,6 +162,55 @@ body {
   }
 }
 
+/* Obsidian shrinks the wrapper to fit-content, which blocks the full width */
+.markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+  width: auto;
+}
+
+/* Live Preview pads the cell wrapper instead of the cell itself */
+.markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+  padding-block: var(--table-cell-padding-y);
+}
+
 .markdown-source-view.mod-cm6 .cm-table-widget.is-selected table::after {
   border-radius: var(--table-radius);
+}
+
+/* Add row/column buttons keep Obsidian's size and are detached from the table.
+   The widget grows by the gap on the end and bottom side so they still fit in
+   its padding, and the end margin grows too so the table keeps its width
+   (Obsidian sets that margin with !important, so it has to be overridden so) */
+.markdown-source-view.mod-cm6 .cm-table-widget {
+  padding-inline-end: calc(
+    var(--table-drag-handle-size) + var(--table-add-button-gap)
+  );
+  padding-bottom: calc(
+    var(--table-drag-handle-size) + var(--table-add-button-gap)
+  );
+  margin-inline-end: calc(
+    -1 * var(--size-4-4) - var(--table-add-button-gap)
+  ) !important;
+  anchor-scope: --table-body;
+
+  & :is(.table-row-btn, .table-col-btn) {
+    border-radius: var(--radius-s);
+  }
+
+  & .table-row-btn {
+    top: calc(100% + var(--table-add-button-gap));
+  }
+
+  /* The header has no borders, so the column button spans only the body.
+     Without body rows there is no anchor and it falls back to the full height */
+  & tbody:not(:empty) {
+    anchor-name: --table-body;
+  }
+
+  & .table-col-btn {
+    position-anchor: --table-body;
+    inset-inline-start: calc(100% + var(--table-add-button-gap));
+    top: anchor(top, 0);
+    bottom: anchor(bottom, 0);
+    height: auto;
+  }
 }

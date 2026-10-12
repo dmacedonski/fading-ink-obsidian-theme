@@ -1,0 +1,351 @@
+/* Charm font: Copyright 2018 The Charm Project Authors
+   (https://github.com/cadsondemak/charm), licensed under the SIL Open Font
+   License, Version 1.1 (https://openfontlicense.org). The build embeds the
+   files from fonts/ as data URLs, Obsidian themes can't load them from disk */
+@font-face {
+  font-family: Charm;
+  font-weight: normal;
+  src: url('../fonts/Charm-Regular.ttf');
+}
+
+@font-face {
+  font-family: Charm;
+  font-weight: bold;
+  src: url('../fonts/Charm-Bold.ttf');
+}
+
+body {
+  /* Headers */
+
+  --h1-font: 'Charm';
+  --h1-weight: normal;
+  --h1-size: 1.875rem;
+  --h1-line-height: var(--line-height-tight);
+  --h2-font: 'Charm';
+  --h2-weight: normal;
+  --h2-size: 1.5rem;
+  --h2-line-height: var(--line-height-tight);
+  --h3-font: 'Charm';
+  --h3-weight: normal;
+  --h3-size: 1.25rem;
+  --h3-line-height: var(--line-height-tight);
+  --h4-font: 'Charm';
+  --h4-weight: normal;
+  --h4-size: 1.125rem;
+  --h4-line-height: var(--line-height-tight);
+  --h5-font: 'Charm';
+  --h5-weight: var(--h4-weight);
+  --h5-size: var(--h4-size);
+  --h5-line-height: var(--h4-line-height);
+  --h6-font: 'Charm';
+  --h6-weight: var(--h4-weight);
+  --h6-size: var(--h4-size);
+  --h6-line-height: var(--h4-line-height);
+
+  /* Horizontal rule */
+
+  --hr-thickness: 1px;
+
+  /* Radiuses */
+
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 8px;
+  --radius-xl: 12px;
+  --code-radius: var(--radius-m);
+  --image-radius: var(--radius-m);
+  --table-radius: var(--radius-m);
+  --table-selection-border-radius: var(--table-radius);
+
+  /* Tables */
+
+  --table-border-width: var(--border-width);
+  --table-add-button-border-width: 0;
+  --table-add-button-background: var(--background-modifier-hover);
+  --table-add-button-gap: var(--size-2-2);
+  --table-cell-padding-y: var(--size-4-2);
+  --table-header-border-color: transparent;
+
+  /* Code blocks */
+
+  --code-border-width: var(--border-width);
+
+  /* Links */
+
+  --link-background-opacity: 25%;
+  --link-background-height: 0.35em;
+  --link-external-color-hover: var(--link-external-color);
+}
+
+/* Header underline */
+.markdown-rendered :is(h1, h2, h3, h4, h5, h6),
+.markdown-source-view.mod-cm6 .HyperMD-header {
+  background-image: linear-gradient(
+    to right,
+    var(--text-accent),
+    transparent 50%
+  );
+  background-size: 100% var(--border-width);
+  background-position: left bottom 0.2em;
+  background-repeat: no-repeat;
+}
+
+/* Horizontal rule */
+.markdown-rendered :is(hr),
+.markdown-source-view.mod-cm6 .hr hr {
+  display: grid;
+  place-items: center;
+  border: none;
+
+  &::before,
+  &::after {
+    grid-area: 1 / 1;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: var(--hr-thickness);
+    background-image: linear-gradient(
+      to right,
+      transparent 10%,
+      var(--color-accent) 40%,
+      var(--color-accent) 60%,
+      transparent 90%
+    );
+  }
+
+  &::after {
+    content: '§';
+    display: grid;
+    place-items: center;
+    transform: rotate(45deg);
+    padding-inline: 0.5rem;
+    color: var(--text-error);
+    font-size: 1rem;
+    background-color: var(--background-primary);
+  }
+}
+
+/* Inline code keeps a smaller radius than code blocks */
+.markdown-rendered :not(pre) > code,
+.cm-s-obsidian .cm-inline-code {
+  --code-radius: var(--radius-s);
+}
+
+/* Callouts tint the table border, so code blocks follow it there as well */
+.callout {
+  --code-border-color: var(--table-border-color);
+}
+
+/* Roomier code blocks in reading view */
+.markdown-rendered pre {
+  padding: var(--size-4-4) var(--size-4-5);
+}
+
+/* Code block language label in reading view. The language is only available
+   as the "language-*" class that Prism adds to <pre>, so the whole class is
+   shown in a monospace font and the 9-character prefix is clipped off */
+.markdown-rendered pre[class^='language-']::after {
+  content: attr(class);
+  position: absolute;
+  right: var(--size-4-2);
+  bottom: var(--size-2-2);
+  font-family: var(--font-monospace);
+  font-size: var(--font-smallest);
+  color: var(--text-faint);
+  clip-path: inset(0 0 0 9ch);
+}
+
+/* External images in reading view (embeds use --image-radius already) */
+.markdown-rendered img {
+  border-radius: var(--image-radius);
+}
+
+/* Tables */
+.markdown-rendered table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  & :is(th, td) {
+    padding-block: var(--table-cell-padding-y);
+
+    /* Avoid doubled inner borders: each cell draws only its right and bottom
+       border, Obsidian's first-column rules and the first body row add the
+       outer edges */
+    border-top-width: 0;
+    border-left-width: 0;
+  }
+
+  /* The header borders are transparent (they keep their width so the header
+     text stays aligned with the body), so the body draws its own top edge */
+  & tbody tr:first-child > td {
+    border-top-width: var(--table-border-width);
+  }
+
+  & tbody tr:first-child > td:first-child {
+    border-top-left-radius: var(--table-radius);
+  }
+
+  & tbody tr:first-child > td:last-child {
+    border-top-right-radius: var(--table-radius);
+  }
+
+  & tbody tr:last-child > td:first-child {
+    border-bottom-left-radius: var(--table-radius);
+  }
+
+  & tbody tr:last-child > td:last-child {
+    border-bottom-right-radius: var(--table-radius);
+  }
+}
+
+/* Obsidian shrinks the wrapper to fit-content, which blocks the full width */
+.markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+  width: auto;
+}
+
+/* Live Preview pads the cell wrapper instead of the cell itself */
+.markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+  padding-block: var(--table-cell-padding-y);
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget.is-selected table::after {
+  border-radius: var(--table-radius);
+}
+
+/* Add row/column buttons keep Obsidian's size and are detached from the table.
+   The widget grows by the gap on the end and bottom side so they still fit in
+   its padding, and the end margin grows too so the table keeps its width
+   (Obsidian sets that margin with !important, so it has to be overridden so) */
+.markdown-source-view.mod-cm6 .cm-table-widget {
+  padding-inline-end: calc(
+    var(--table-drag-handle-size) + var(--table-add-button-gap)
+  );
+  padding-bottom: calc(
+    var(--table-drag-handle-size) + var(--table-add-button-gap)
+  );
+  margin-inline-end: calc(
+    -1 * var(--size-4-4) - var(--table-add-button-gap)
+  ) !important;
+  anchor-scope: --table-body;
+
+  & :is(.table-row-btn, .table-col-btn) {
+    border-radius: var(--radius-s);
+  }
+
+  & .table-row-btn {
+    top: calc(100% + var(--table-add-button-gap));
+  }
+
+  /* The header has no borders, so the column button spans only the body.
+     Without body rows there is no anchor and it falls back to the full height */
+  & tbody:not(:empty) {
+    anchor-name: --table-body;
+  }
+
+  & .table-col-btn {
+    position-anchor: --table-body;
+    inset-inline-start: calc(100% + var(--table-add-button-gap));
+    top: anchor(top, 0);
+    bottom: anchor(bottom, 0);
+    height: auto;
+  }
+}
+
+/* Properties: dashed top and bottom border separates them from the content.
+   Limited to notes, the sidebar properties view stays unchanged */
+.markdown-source-view .metadata-container,
+.markdown-preview-view .metadata-container {
+  --metadata-border-width: var(--border-width) 0;
+
+  border-style: dashed;
+}
+
+/* Obsidian gives internal links in highlights the text color in reading
+   view. Live Preview keeps the link color (see the .cm-underline color rule
+   below), so reading view does the same */
+.markdown-rendered mark .internal-link {
+  color: var(--link-color);
+}
+
+/* Internal and external links: a thick line in a translucent shade of the
+   link color sits behind the text and grows to cover it on hover.
+   Translucency keeps it lighter than the text on light backgrounds and
+   darker on dark ones. In Live Preview the text is in .cm-underline, and
+   links to missing notes are wrapped in .is-unresolved. Links to missing
+   notes and links in properties keep Obsidian's look */
+.markdown-rendered .internal-link:not(.is-unresolved, .metadata-container *),
+.markdown-rendered .external-link:not(.metadata-container *),
+.markdown-source-view.mod-cm6 :is(.cm-link, .cm-url) .cm-underline,
+.markdown-source-view.mod-cm6
+  .cm-hmd-internal-link
+  .cm-underline:not(.is-unresolved *) {
+  --link-background: color-mix(
+    in oklch,
+    currentcolor var(--link-background-opacity),
+    transparent
+  );
+
+  background-image: linear-gradient(
+    var(--link-background),
+    var(--link-background)
+  );
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% var(--link-background-height);
+  transition-property: opacity, background-size;
+  transition-duration: var(--anim-duration-fast);
+  transition-timing-function: ease-in-out;
+
+  /* Like Obsidian, skip hover on touch screens where it sticks after a tap */
+  @media (hover: hover) {
+    &:hover {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+/* The lighter hover color would blend into the expanded line, so internal
+   links keep their color (external links do so through the body variables).
+   Reading view sets the hover color on the link itself, Live Preview on the
+   outer span that .cm-underline inherits from */
+.markdown-rendered .internal-link:not(.is-unresolved, .metadata-container *) {
+  --link-color-hover: var(--link-color);
+}
+
+.markdown-source-view.mod-cm6
+  .cm-hmd-internal-link
+  .cm-underline:not(.is-unresolved *) {
+  color: var(--link-color);
+}
+
+/* External link icon in reading view. Obsidian draws a gray icon as
+   a background, which the line above replaces, so it is redrawn after the
+   text in the link color (Lucide "external-link" icon, ISC license).
+   Like Obsidian, it's mirrored in RTL and hidden in print and web viewer */
+.markdown-rendered .external-link:not(.metadata-container *) {
+  padding-inline-end: 0;
+}
+
+.markdown-rendered .external-link:not(.metadata-container *)::after {
+  content: '';
+  display: inline-block;
+  width: 0.825em;
+  height: 0.825em;
+  margin-inline-start: 0.15em;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.markdown-rendered .external-link:not(.metadata-container *):dir(rtl)::after {
+  transform: scaleX(-1);
+}
+
+:is(.print, .webviewer-content)
+  .markdown-rendered
+  .external-link:not(.metadata-container *)::after {
+  display: none;
+}

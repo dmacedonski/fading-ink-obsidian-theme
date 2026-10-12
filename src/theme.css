@@ -84,6 +84,11 @@ body {
   --list-bullet-transform: rotate(45deg);
   --checklist-done-decoration: none;
   --checklist-done-color: var(--text-faint);
+
+  /* Blockquotes */
+
+  --blockquote-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 36'%3E%3Cpath d='M18.5 4.5C9.5 7 3 14.5 3 24C3 28.4 6.6 32 11 32C15.4 32 19 28.4 19 24C19 19.6 15.4 16 11 16C10.5 16 10 16 9.6 16.1C11 11.4 14.4 7.8 19.6 6.2Z'/%3E%3Cpath transform='translate(24 0)' d='M18.5 4.5C9.5 7 3 14.5 3 24C3 28.4 6.6 32 11 32C15.4 32 19 28.4 19 24C19 19.6 15.4 16 11 16C10.5 16 10 16 9.6 16.1C11 11.4 14.4 7.8 19.6 6.2Z'/%3E%3C/svg%3E");
+  --blockquote-mark-color: var(--blockquote-border-color);
 }
 
 /* Header underline */
@@ -216,6 +221,51 @@ input.task-list-item-checkbox:checked::after {
   background-color: var(--text-accent);
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.8 12.9C4.3 14.4 6.5 17.4 8.3 21.6C9.4 21.6 9.4 21.6 10.1 20.6C13.3 13.6 17.6 7.4 23.2 1.6C16.6 5.4 12.4 10.4 9.3 15.6C7.7 13.4 5.8 11.8 3.8 10.8Z'/%3E%3C/svg%3E")
     center / contain no-repeat;
+}
+
+/* Blockquotes: a quotation mark made of two ink drops hangs at the top of the
+   border, which starts below it and fades out downwards. Only the outermost
+   quote gets it */
+.markdown-rendered blockquote:not(blockquote blockquote) {
+  position: relative;
+  border-image: linear-gradient(
+      to bottom,
+      transparent 2.2em,
+      var(--blockquote-border-color) 2.2em,
+      transparent
+    )
+    1;
+}
+
+.markdown-rendered blockquote:not(blockquote blockquote)::before {
+  content: '';
+  position: absolute;
+  top: 0.15em;
+  inset-inline-start: calc(var(--blockquote-border-thickness) / -2 - 0.625em);
+  width: 1.25em;
+  height: 1em;
+  background-color: var(--blockquote-mark-color);
+  mask: var(--blockquote-mark) center / contain no-repeat;
+}
+
+/* Live Preview draws the border separately for every line, so it can't fade.
+   The mark goes on the first quote line (callouts being edited are quote
+   lines too), whose own piece of the border is hidden */
+.markdown-source-view.mod-cm6.is-live-preview
+  .cm-line:not(.HyperMD-quote)
+  + .HyperMD-quote:not(.HyperMD-callout) {
+  --blockquote-border-color: transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0.15em;
+    inset-inline-start: calc(var(--blockquote-border-thickness) / 2 - 0.625em);
+    width: 1.25em;
+    height: 1em;
+    background-color: var(--blockquote-mark-color);
+    mask: var(--blockquote-mark) center / contain no-repeat;
+  }
 }
 
 /* Inline code keeps a smaller radius than code blocks */

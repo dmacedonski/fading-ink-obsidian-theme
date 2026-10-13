@@ -430,6 +430,35 @@ input.task-list-item-checkbox:checked::after {
   border-style: dashed;
 }
 
+/* Highlights in reading view look like highlighter strokes: slanted ends that
+   reach a bit past the text, and the ink is densest where the stroke starts.
+   Each wrapped line gets a stroke of its own. Live Preview splits highlights
+   with other formatting inside into separate spans, where the strokes would
+   show the joins, so it keeps Obsidian's flat highlight of the same average
+   intensity */
+.markdown-rendered mark {
+  --highlight-direction: to right;
+
+  margin-inline: -0.25em;
+  padding-inline: 0.25em;
+  border-start-start-radius: 0.8em;
+  border-start-end-radius: 0.3em;
+  border-end-end-radius: 0.8em;
+  border-end-start-radius: 0.3em;
+  background-color: transparent;
+  background-image: linear-gradient(
+    var(--highlight-direction),
+    color-mix(in oklch, var(--highlight-background) 50%, transparent),
+    oklch(from var(--highlight-background) l c h / calc(alpha * 1.3)) 0.6em,
+    color-mix(in oklch, var(--highlight-background) 80%, transparent)
+  );
+  box-decoration-break: clone;
+
+  &:dir(rtl) {
+    --highlight-direction: to left;
+  }
+}
+
 /* Obsidian gives internal links in highlights the text color in reading
    view. Live Preview keeps the link color (see the .cm-underline color rule
    below), so reading view does the same */

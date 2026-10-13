@@ -13,7 +13,23 @@
   src: url('../fonts/DancingScript[wght].ttf');
 }
 
+/* Lora font by Cyreal: Copyright 2011 The Lora Project Authors
+   (https://github.com/cyrealtype/Lora-Cyrillic), with Reserved Font Name
+   "Lora", licensed under the SIL Open Font License, Version 1.1 (full text
+   in fonts/OFL-Lora.txt). A variable font covering weights 400-700, used for
+   the text. Italic text is set in Dancing Script, so the upright font is
+   enough */
+@font-face {
+  font-family: Lora;
+  font-weight: 400 700;
+  src: url('../fonts/Lora[wght].ttf');
+}
+
 body {
+  /* Text */
+
+  --font-text-theme: 'Lora';
+
   /* Headers */
 
   --h1-font: 'Dancing Script';

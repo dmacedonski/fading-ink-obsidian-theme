@@ -1,7 +1,9 @@
 /**
  * Builds theme.css from src/theme.css. Obsidian themes can't load files from
  * disk, so every relative url() in the source (fonts, images) is embedded as
- * a base64 data URL. Paths are resolved relative to src/.
+ * a base64 data URL. Paths are resolved relative to src/. TrueType and
+ * OpenType fonts are converted to WOFF2 on the way, which roughly halves
+ * their size.
  *
  * Usage: `$ npm run build` builds once, `$ npm run dev` rebuilds after every
  * change in src/ or fonts/.
@@ -9,6 +11,7 @@
 
 import { readFileSync, writeFileSync } from "fs";
 import { dirname, extname, resolve } from "path";
+import { sfntToWoff2 } from "./woff2.mjs";
 
 const SOURCE = "src/theme.css";
 const OUTPUT = "theme.css";
@@ -35,14 +38,18 @@ const source = readFileSync(SOURCE, "utf8");
 
 let embedded = 0;
 const output = source.replace(RELATIVE_URL, (match, quote, path) => {
-  const mimeType = MIME_TYPES[extname(path).toLowerCase()];
+  let mimeType = MIME_TYPES[extname(path).toLowerCase()];
   if (!mimeType) {
     throw new Error(`${SOURCE}: unsupported file type in ${match}`);
   }
 
-  const data = readFileSync(resolve(dirname(SOURCE), path)).toString("base64");
+  let data = readFileSync(resolve(dirname(SOURCE), path));
+  if (mimeType === "font/ttf" || mimeType === "font/otf") {
+    data = sfntToWoff2(data);
+    mimeType = "font/woff2";
+  }
   embedded++;
-  return `url('data:${mimeType};base64,${data}')`;
+  return `url('data:${mimeType};base64,${data.toString("base64")}')`;
 });
 
 writeFileSync(OUTPUT, BANNER + output);

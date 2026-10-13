@@ -305,6 +305,32 @@ input.task-list-item-checkbox:checked::after {
   background-repeat: no-repeat;
 }
 
+/* Embedded notes look like clippings from another page: a dashed border all
+   around instead of the accent bar. The variables are set on the embed
+   rather than the body, so the padding beats Obsidian's right-to-left
+   variant and the embeds in canvas cards and hover popovers stay as they
+   are */
+.markdown-rendered .markdown-embed,
+.markdown-source-view.mod-cm6 .markdown-embed {
+  --embed-border-start: var(--border-width) dashed
+    var(--background-modifier-border);
+  --embed-border-end: var(--embed-border-start);
+  --embed-border-top: var(--embed-border-start);
+  --embed-border-bottom: var(--embed-border-start);
+  --embed-padding: var(--size-4-3) var(--size-4-5);
+
+  border-radius: var(--radius-m);
+}
+
+/* The Live Preview hover outline of embedded blocks (callouts, embeds,
+   math...) follows their radius */
+@media (hover: hover) {
+  .markdown-source-view.mod-cm6
+    .cm-embed-block:not(.cm-table-widget, .cm-lang-base):hover {
+    border-radius: var(--radius-m);
+  }
+}
+
 /* Inline code keeps a smaller radius than code blocks */
 .markdown-rendered :not(pre) > code,
 .cm-s-obsidian .cm-inline-code {

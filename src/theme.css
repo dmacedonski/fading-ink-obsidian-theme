@@ -506,6 +506,29 @@ a.tag,
   }
 }
 
+/* Footnotes are separated by a short rule at the start of the line, like in
+   books, instead of the horizontal rule ornament. Its pseudo-elements can't
+   be overridden here (the nested ::before and ::after get the specificity of
+   the Live Preview selector), so the rule is hidden and the section draws
+   the line itself, keeping the rule's spacing above it */
+.markdown-rendered .footnotes > :is(hr) {
+  display: none;
+}
+
+.markdown-rendered .footnotes {
+  margin-top: var(--size-4-8);
+  padding-top: var(--size-4-4);
+  background-image: linear-gradient(to right, var(--text-accent), transparent);
+  background-size: 33% var(--border-width);
+  background-repeat: no-repeat;
+}
+
+/* Footnote text in a faded ink, so it doesn't compete with the main text */
+.markdown-rendered .footnotes,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-footnote {
+  color: var(--text-muted);
+}
+
 /* Obsidian gives internal links in highlights the text color in reading
    view. Live Preview keeps the link color (see the .cm-underline color rule
    below), so reading view does the same */

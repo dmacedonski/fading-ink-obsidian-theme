@@ -51,6 +51,7 @@ body {
   --radius-m: 6px;
   --radius-l: 8px;
   --radius-xl: 12px;
+  --bases-embed-border-radius: var(--radius-m);
   --callout-radius: var(--radius-m);
   --code-radius: var(--radius-m);
   --image-radius: var(--radius-m);
@@ -109,9 +110,10 @@ body {
   --callout-title-weight: 400;
 }
 
-/* Header underline */
+/* Header underline, the note title above the content gets it as well */
 .markdown-rendered :is(h1, h2, h3, h4, h5, h6),
-.markdown-source-view.mod-cm6 .HyperMD-header {
+.markdown-source-view.mod-cm6 .HyperMD-header,
+.inline-title {
   background-image: linear-gradient(
     to right,
     var(--text-accent),
@@ -320,6 +322,14 @@ input.task-list-item-checkbox:checked::after {
   --embed-padding: var(--size-4-3) var(--size-4-5);
 
   border-radius: var(--radius-m);
+}
+
+/* Obsidian rounds embedded bases with --bases-embed-radius, which it never
+   defines (it sets --bases-embed-border-radius instead), so their corners
+   are square. Linking the two on the view keeps Obsidian's zero radius in
+   popovers, canvas and on phones, where it overrides the variable */
+.bases-view {
+  --bases-embed-radius: var(--bases-embed-border-radius);
 }
 
 /* The Live Preview hover outline of embedded blocks (callouts, embeds,

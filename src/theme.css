@@ -162,6 +162,15 @@ body {
   font-weight: 700;
 }
 
+/* Strikethrough is crossed out with the pen: a thicker line in the accent
+   color over faded text, which stays readable */
+.markdown-rendered :is(del, s),
+.markdown-source-view.mod-cm6 .cm-strikethrough {
+  color: var(--text-muted);
+  text-decoration-color: var(--text-accent);
+  text-decoration-thickness: 0.08em;
+}
+
 /* Horizontal rule */
 .markdown-rendered :is(hr),
 .markdown-source-view.mod-cm6 .hr hr {

@@ -144,6 +144,108 @@ body {
   --callout-title-weight: 400;
 }
 
+/* Palette: iron gall ink on paper. The text is dark brown-black ink that
+   fades to brown in the muted shades, and the accent is sepia, the color the
+   ink turns over the years. The extra colors (callouts, highlights, code)
+   are historic pigments: carmine, ochre, saffron, verdigris, sea green,
+   indigo, logwood and rose. An accent chosen in Obsidian's appearance
+   settings still takes precedence. Obsidian derives backgrounds, borders and
+   text from the base colors: 00 is the note, 10 code and alternate rows, 20
+   the sidebars, 30-40 borders, 50 faint, 70 muted and 100 normal text */
+.theme-light {
+  /* Accent: sepia #98561f */
+
+  --accent-h: 27;
+  --accent-s: 66%;
+  --accent-l: 36%;
+
+  /* Paper and ink */
+
+  --color-base-00: #f6f0e4;
+  --color-base-05: #f3ecdf;
+  --color-base-10: #f1e9db;
+  --color-base-20: #ebe2d1;
+  --color-base-25: #e4d9c6;
+  --color-base-30: #ddd2bd;
+  --color-base-35: #d3c6af;
+  --color-base-40: #bfb19a;
+  --color-base-50: #9c8d77;
+  --color-base-60: #7d6e5b;
+  --color-base-70: #6b5c49;
+  --color-base-100: #2e261d;
+
+  /* Pigments */
+
+  --color-red: #b53a2e;
+  --color-red-rgb: 181, 58, 46;
+  --color-orange: #a35d18;
+  --color-orange-rgb: 163, 93, 24;
+  --color-yellow: #b8901c;
+  --color-yellow-rgb: 184, 144, 28;
+  --color-green: #3e7558;
+  --color-green-rgb: 62, 117, 88;
+  --color-cyan: #24706f;
+  --color-cyan-rgb: 36, 112, 111;
+  --color-blue: #3b5998;
+  --color-blue-rgb: 59, 89, 152;
+  --color-purple: #7b4b94;
+  --color-purple-rgb: 123, 75, 148;
+  --color-pink: #a64a6d;
+  --color-pink-rgb: 166, 74, 109;
+}
+
+.theme-dark {
+  /* Accent: Obsidian lightens it by 15% for text in the dark theme, so this
+     base (#cd8c3c) gives text in light sepia #d6985b. White text on it would
+     be hard to read, ink-colored text is used instead */
+
+  --accent-h: 33;
+  --accent-s: 59%;
+  --accent-l: 52%;
+  --text-on-accent: var(--color-base-00);
+
+  /* Paper and ink */
+
+  --color-base-00: #1d1a16;
+  --color-base-05: #211d19;
+  --color-base-10: #23201b;
+  --color-base-20: #282420;
+  --color-base-25: #2e2a25;
+  --color-base-30: #35302a;
+  --color-base-35: #403a33;
+  --color-base-40: #574f45;
+  --color-base-50: #7f7462;
+  --color-base-60: #9a8e7a;
+  --color-base-70: #b3a690;
+  --color-base-100: #e6dccb;
+
+  /* Pigments */
+
+  --color-red: #e0675a;
+  --color-red-rgb: 224, 103, 90;
+  --color-orange: #dd9a4f;
+  --color-orange-rgb: 221, 154, 79;
+  --color-yellow: #dcc05a;
+  --color-yellow-rgb: 220, 192, 90;
+  --color-green: #7cb894;
+  --color-green-rgb: 124, 184, 148;
+  --color-cyan: #5fb3b3;
+  --color-cyan-rgb: 95, 179, 179;
+  --color-blue: #7f9bd6;
+  --color-blue-rgb: 127, 155, 214;
+  --color-purple: #b08ac7;
+  --color-purple-rgb: 176, 138, 199;
+  --color-pink: #d986a6;
+  --color-pink-rgb: 217, 134, 166;
+}
+
+/* PDF export prints on white paper, not in the paper color */
+@media print {
+  .theme-light {
+    --color-base-00: #fff;
+  }
+}
+
 /* Header underline, the note title above the content gets it as well.
    Like the other fading lines, it fades into --fade-into, which the PDF
    export sets to the background (see the end of the file) */

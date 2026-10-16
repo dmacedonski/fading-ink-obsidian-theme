@@ -137,6 +137,11 @@ body {
   );
   --tag-border-color-hover: var(--tag-border-color);
 
+  /* Paper texture of the notes: fine grain and an uneven tone (the layers
+     are set with the palette) */
+
+  --paper-texture: var(--paper-grain), var(--paper-tone);
+
   /* Callouts */
 
   --callout-border-width: var(--border-width);
@@ -192,6 +197,12 @@ body {
   --color-purple-rgb: 123, 75, 148;
   --color-pink: #a64a6d;
   --color-pink-rgb: 166, 74, 109;
+
+  /* Paper texture: SVG noise in the ink color, darkening the paper by a few
+     percent */
+
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.18 0 0 0 0 0.1 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.15 0 0 0 0.16 -0.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .theme-dark {
@@ -237,6 +248,12 @@ body {
   --color-purple-rgb: 176, 138, 199;
   --color-pink: #d986a6;
   --color-pink-rgb: 217, 134, 166;
+
+  /* Paper texture: SVG noise in the paper color, lightening it by a few
+     percent */
+
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.92 0 0 0 0 0.8 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.9 0 0 0 0 0.75 0 0 0 0.1 -0.03'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* PDF export prints on white paper, not in the paper color */
@@ -244,6 +261,19 @@ body {
   .theme-light {
     --color-base-00: #fff;
   }
+}
+
+/* The paper texture covers the notes in the editor, on the element that
+   scrolls, and moves with the text like a sheet of paper. Embedded notes,
+   table cells and other editors inside a note don't get it again */
+.workspace-leaf-content[data-type='markdown']
+  .markdown-reading-view
+  .markdown-preview-view:not(.markdown-embed *),
+.workspace-leaf-content[data-type='markdown']
+  .markdown-source-view.mod-cm6
+  .cm-scroller:not(.cm-content *) {
+  background-image: var(--paper-texture);
+  background-attachment: local;
 }
 
 /* Header underline, the note title above the content gets it as well.
@@ -293,7 +323,9 @@ body {
   text-decoration-thickness: 0.08em;
 }
 
-/* Horizontal rule */
+/* Horizontal rule. The line leaves a gap for the section sign (its box
+   turned by 45 degrees crosses the line over about 2.2rem), so nothing has to
+   cover the line and the paper texture shows around the sign */
 .markdown-rendered :is(hr),
 .markdown-source-view.mod-cm6 .hr hr {
   display: grid;
@@ -313,6 +345,10 @@ body {
       to right,
       var(--fade-into, transparent) 10%,
       var(--color-accent) 40%,
+      var(--color-accent) calc(50% - 1.1rem),
+      var(--fade-into, transparent) calc(50% - 1.1rem),
+      var(--fade-into, transparent) calc(50% + 1.1rem),
+      var(--color-accent) calc(50% + 1.1rem),
       var(--color-accent) 60%,
       var(--fade-into, transparent) 90%
     );
@@ -326,7 +362,6 @@ body {
     padding-inline: 0.5rem;
     color: var(--text-error);
     font-size: 1rem;
-    background-color: var(--background-primary);
   }
 }
 

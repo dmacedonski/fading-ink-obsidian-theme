@@ -1,0 +1,830 @@
+/* Dancing Script font by Impallari Type: Copyright 2016 The Dancing Script
+   Project Authors (https://github.com/googlefonts/DancingScript), with
+   Reserved Font Name 'Dancing Script', licensed under the SIL Open Font
+   License, Version 1.1 (https://openfontlicense.org, full text in
+   fonts/OFL.txt). A variable font covering weights 400-700. The build embeds
+   the files from fonts/ as data URLs, Obsidian themes can't load them from
+   disk. Its lowercase letters are smaller than usual (x-height 0.332 em),
+   so size-adjust scales it up */
+@font-face {
+  font-family: 'Dancing Script';
+  font-weight: 400 700;
+  size-adjust: 110%;
+  src: url('../fonts/DancingScript[wght].ttf');
+}
+
+/* Lora font by Cyreal: Copyright 2011 The Lora Project Authors
+   (https://github.com/cyrealtype/Lora-Cyrillic), with Reserved Font Name
+   "Lora", licensed under the SIL Open Font License, Version 1.1 (full text
+   in fonts/OFL-Lora.txt). A variable font covering weights 400-700, used for
+   the text. Italic text is set in Dancing Script, so the upright font is
+   enough */
+@font-face {
+  font-family: Lora;
+  font-weight: 400 700;
+  src: url('../fonts/Lora[wght].ttf');
+}
+
+body {
+  /* Text */
+
+  --font-text-theme: 'Lora';
+
+  /* Headers */
+
+  --h1-font: 'Dancing Script';
+  --h1-weight: 400;
+  --h1-size: 2.25rem;
+  --h1-line-height: var(--line-height-tight);
+  --h2-font: 'Dancing Script';
+  --h2-weight: 400;
+  --h2-size: 1.875rem;
+  --h2-line-height: var(--line-height-tight);
+  --h3-font: 'Dancing Script';
+  --h3-weight: 400;
+  --h3-size: 1.5rem;
+  --h3-line-height: var(--line-height-tight);
+  --h4-font: 'Dancing Script';
+  --h4-weight: 400;
+  --h4-size: 1.375rem;
+  --h4-line-height: var(--line-height-tight);
+  --h5-font: 'Dancing Script';
+  --h5-weight: var(--h4-weight);
+  --h5-size: var(--h4-size);
+  --h5-line-height: var(--h4-line-height);
+  --h6-font: 'Dancing Script';
+  --h6-weight: var(--h4-weight);
+  --h6-size: var(--h4-size);
+  --h6-line-height: var(--h4-line-height);
+
+  /* Horizontal rule */
+
+  --hr-thickness: 1px;
+
+  /* Radiuses */
+
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 8px;
+  --radius-xl: 12px;
+  --bases-embed-border-radius: var(--radius-m);
+  --callout-radius: var(--radius-m);
+  --code-radius: var(--radius-m);
+  --image-radius: var(--radius-m);
+  --table-radius: var(--radius-m);
+  --table-selection-border-radius: var(--table-radius);
+
+  /* Tables */
+
+  --table-border-width: var(--border-width);
+  --table-add-button-border-width: 0;
+  --table-add-button-background: var(--background-modifier-hover);
+  --table-add-button-gap: var(--size-2-2);
+  --table-cell-padding-y: var(--size-4-2);
+  --table-header-border-color: transparent;
+
+  /* Code blocks */
+
+  --code-border-width: var(--border-width);
+
+  /* Links */
+
+  --link-background-opacity: 25%;
+  --link-background-height: 0.35em;
+  --link-external-color-hover: var(--link-external-color);
+
+  /* Lists */
+
+  --list-marker-color: var(--text-accent);
+  --list-marker-color-hover: var(--text-accent-hover);
+  --list-bullet-size: 0.36em;
+  --list-bullet-radius: 1px;
+  --list-bullet-transform: rotate(45deg);
+  --checklist-done-decoration: none;
+  --checklist-done-color: var(--text-faint);
+
+  /* Blockquotes */
+
+  /* Two ink drops (designed on a 46 x 36 grid), cut out with clip-path */
+  --blockquote-mark: shape(
+    from 40.22% 12.5%,
+    curve to 6.52% 66.67% with 20.65% 19.44% / 6.52% 40.28%,
+    curve to 23.91% 88.89% with 6.52% 78.89% / 14.35% 88.89%,
+    curve to 41.3% 66.67% with 33.48% 88.89% / 41.3% 78.89%,
+    curve to 23.91% 44.44% with 41.3% 54.44% / 33.48% 44.44%,
+    curve to 20.87% 44.72% with 22.83% 44.44% / 21.74% 44.44%,
+    curve to 42.61% 17.22% with 23.91% 31.67% / 31.3% 21.67%,
+    close,
+    move to 92.39% 12.5%,
+    curve to 58.7% 66.67% with 72.83% 19.44% / 58.7% 40.28%,
+    curve to 76.09% 88.89% with 58.7% 78.89% / 66.52% 88.89%,
+    curve to 93.48% 66.67% with 85.65% 88.89% / 93.48% 78.89%,
+    curve to 76.09% 44.44% with 93.48% 54.44% / 85.65% 44.44%,
+    curve to 73.04% 44.72% with 75% 44.44% / 73.91% 44.44%,
+    curve to 94.78% 17.22% with 76.09% 31.67% / 83.48% 21.67%,
+    close
+  );
+  --blockquote-mark-color: var(--blockquote-border-color);
+
+  /* Tags */
+
+  --tag-radius: var(--radius-s);
+  --tag-border-width: var(--border-width);
+  --tag-border-color: color-mix(
+    in oklch,
+    var(--interactive-accent) 45%,
+    transparent
+  );
+  --tag-border-color-hover: var(--tag-border-color);
+
+  /* Callouts */
+
+  --callout-border-width: var(--border-width);
+  --callout-title-size: 1.25em;
+  --callout-title-weight: 400;
+}
+
+/* Header underline, the note title above the content gets it as well.
+   Like the other fading lines, it fades into --fade-into, which the PDF
+   export sets to the background (see the end of the file) */
+.markdown-rendered :is(h1, h2, h3, h4, h5, h6),
+.markdown-source-view.mod-cm6 .HyperMD-header,
+.inline-title {
+  background-image: linear-gradient(
+    to right,
+    var(--text-accent),
+    var(--fade-into, transparent) 50%
+  );
+  background-size: 100% var(--border-width);
+  background-position: left bottom 0.2em;
+  background-repeat: no-repeat;
+}
+
+/* Italic text uses the handwritten font as well. Dancing Script has no
+   italic face, so the synthesized slant is turned off. It's enlarged to match
+   the x-height of the text, and a line height of 1 keeps its tall ascenders
+   from pushing the lines apart */
+.markdown-rendered :is(em, i),
+.markdown-source-view.mod-cm6 .cm-em {
+  font-family: 'Dancing Script', cursive;
+  font-synthesis-style: none;
+  font-size: 1.25em;
+  line-height: 1;
+}
+
+/* Bold italic gets the heaviest weight of the font, Obsidian's usual bold
+   (600) differs too little from the regular weight in Dancing Script.
+   Markdown nests the tags either way, Live Preview puts both classes on one
+   span */
+.markdown-rendered :is(strong, b) :is(em, i),
+.markdown-rendered :is(em, i) :is(strong, b),
+.markdown-source-view.mod-cm6 .cm-strong.cm-em {
+  font-weight: 700;
+}
+
+/* Strikethrough is crossed out with the pen: a thicker line in the accent
+   color over faded text, which stays readable */
+.markdown-rendered :is(del, s),
+.markdown-source-view.mod-cm6 .cm-strikethrough {
+  color: var(--text-muted);
+  text-decoration-color: var(--text-accent);
+  text-decoration-thickness: 0.08em;
+}
+
+/* Horizontal rule */
+.markdown-rendered :is(hr),
+.markdown-source-view.mod-cm6 .hr hr {
+  display: grid;
+  place-items: center;
+  border: none;
+
+  &::before,
+  &::after {
+    grid-area: 1 / 1;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: var(--hr-thickness);
+    background-image: linear-gradient(
+      to right,
+      var(--fade-into, transparent) 10%,
+      var(--color-accent) 40%,
+      var(--color-accent) 60%,
+      var(--fade-into, transparent) 90%
+    );
+  }
+
+  &::after {
+    content: '§';
+    display: grid;
+    place-items: center;
+    transform: rotate(45deg);
+    padding-inline: 0.5rem;
+    color: var(--text-error);
+    font-size: 1rem;
+    background-color: var(--background-primary);
+  }
+}
+
+/* List bullets: the body variables turn them into accent diamonds. Nested
+   levels re-scope those variables on the bullet: an outlined diamond on the
+   2nd level, a small dot on the 3rd and deeper. Obsidian's hover and
+   collapsed states still fill the bullet. Live Preview marks the level with
+   cm-list-1..3, repeating every three levels. The PDF export draws them on
+   the list item itself (see the end of the file), which gets the variables
+   for its ::before. :where() keeps all selectors at the same specificity, so
+   the dot rule wins on deeper levels by order */
+:where(.markdown-rendered :is(ul, ol) ul > li) > .list-bullet,
+:where(.print .markdown-rendered :is(ul, ol) ul > li),
+:where(.markdown-source-view.mod-cm6 .cm-formatting-list-ul.cm-list-2)
+  .list-bullet {
+  --list-bullet-border: 1px solid var(--text-accent);
+  --list-marker-color: transparent;
+}
+
+:where(.markdown-rendered :is(ul, ol) :is(ul, ol) ul > li) > .list-bullet,
+:where(.print .markdown-rendered :is(ul, ol) :is(ul, ol) ul > li),
+:where(.markdown-source-view.mod-cm6 .cm-formatting-list-ul.cm-list-3)
+  .list-bullet {
+  --list-bullet-border: none;
+  --list-bullet-radius: 50%;
+  --list-bullet-size: 0.25em;
+  --list-bullet-transform: none;
+  --list-marker-color: var(--text-accent);
+}
+
+/* List numbers in the handwritten font. They keep the text size, a larger
+   ::marker would push the items apart since it ignores line-height */
+.markdown-rendered ol > li::marker {
+  font-family: 'Dancing Script', cursive;
+}
+
+.markdown-source-view.mod-cm6 .cm-formatting-list-ol {
+  font-family: 'Dancing Script', cursive;
+  line-height: 1;
+}
+
+/* Task list checkboxes: instead of a filled box, a hand-drawn tick in the
+   accent color sticks out of the empty box, like checking it off with a pen.
+   The input selectors match the specificity of Obsidian's checkbox rules */
+.task-list-item-checkbox {
+  --checkbox-color: transparent;
+  --checkbox-color-hover: transparent;
+}
+
+input.task-list-item-checkbox:checked {
+  border-color: var(--checkbox-border-color);
+}
+
+input.task-list-item-checkbox:checked:hover {
+  border-color: var(--checkbox-border-color-hover);
+}
+
+input.task-list-item-checkbox:checked::after {
+  top: -45%;
+  inset-inline-start: -5%;
+  width: 150%;
+  height: 150%;
+  background-color: var(--text-accent);
+
+  /* Obsidian cuts its own tick out with a mask */
+  mask: none;
+  clip-path: shape(
+    from 7.5% 53.75%,
+    curve to 34.58% 90% with 17.92% 60% / 27.08% 72.5%,
+    curve to 42.08% 85.83% with 39.17% 90% / 39.17% 90%,
+    curve to 96.67% 6.67% with 55.42% 56.67% / 73.33% 30.83%,
+    curve to 38.75% 65% with 69.17% 22.5% / 51.67% 43.33%,
+    curve to 15.83% 45% with 32.08% 55.83% / 24.17% 49.17%,
+    close
+  );
+}
+
+/* Blockquotes: a quotation mark made of two ink drops hangs at the top of the
+   border, which starts below it and fades out downwards. Only the outermost
+   quote gets it */
+.markdown-rendered blockquote:not(blockquote blockquote) {
+  position: relative;
+  border-image: linear-gradient(
+      to bottom,
+      var(--fade-into, transparent) 2.2em,
+      var(--blockquote-border-color) 2.2em,
+      var(--fade-into, transparent)
+    )
+    1;
+}
+
+.markdown-rendered blockquote:not(blockquote blockquote)::before {
+  content: '';
+  position: absolute;
+  top: 0.15em;
+  inset-inline-start: calc(var(--blockquote-border-thickness) / -2 - 0.625em);
+  width: 1.25em;
+  aspect-ratio: 46 / 36;
+  background-color: var(--blockquote-mark-color);
+  clip-path: var(--blockquote-mark);
+}
+
+/* Live Preview draws the border separately for every line, so it can't fade.
+   The mark goes on the first quote line (callouts being edited are quote
+   lines too), whose own piece of the border is hidden */
+.markdown-source-view.mod-cm6.is-live-preview
+  .cm-line:not(.HyperMD-quote)
+  + .HyperMD-quote:not(.HyperMD-callout) {
+  --blockquote-border-color: transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0.15em;
+    inset-inline-start: calc(var(--blockquote-border-thickness) / 2 - 0.625em);
+    width: 1.25em;
+    aspect-ratio: 46 / 36;
+    background-color: var(--blockquote-mark-color);
+    clip-path: var(--blockquote-mark);
+  }
+}
+
+/* Callout titles in the handwritten font, enlarged like italic text (see the
+   body variables) */
+.callout-title-inner {
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Callout titles are underlined like headers, in the callout color. The line
+   is drawn on top of the content, which Obsidian adds only to callouts with
+   more than a title and hides when collapsing, so the line goes with it */
+.callout-content {
+  background-image: linear-gradient(
+    to right,
+    var(--callout-color),
+    var(--fade-into, transparent) 50%
+  );
+  background-size: 100% var(--border-width);
+  background-repeat: no-repeat;
+}
+
+/* Embedded notes look like clippings from another page: a dashed border all
+   around instead of the accent bar. The variables are set on the embed
+   rather than the body, so the padding beats Obsidian's right-to-left
+   variant and the embeds in canvas cards and hover popovers stay as they
+   are */
+.markdown-rendered .markdown-embed,
+.markdown-source-view.mod-cm6 .markdown-embed {
+  --embed-border-start: var(--border-width) dashed
+    var(--background-modifier-border);
+  --embed-border-end: var(--embed-border-start);
+  --embed-border-top: var(--embed-border-start);
+  --embed-border-bottom: var(--embed-border-start);
+  --embed-padding: var(--size-4-3) var(--size-4-5);
+
+  border-radius: var(--radius-m);
+}
+
+/* Obsidian rounds embedded bases with --bases-embed-radius, which it never
+   defines (it sets --bases-embed-border-radius instead), so their corners
+   are square. Linking the two on the view keeps Obsidian's zero radius in
+   popovers, canvas and on phones, where it overrides the variable */
+.bases-view {
+  --bases-embed-radius: var(--bases-embed-border-radius);
+}
+
+/* The Live Preview hover outline of embedded blocks (callouts, embeds,
+   math...) follows their radius */
+@media (hover: hover) {
+  .markdown-source-view.mod-cm6
+    .cm-embed-block:not(.cm-table-widget, .cm-lang-base):hover {
+    border-radius: var(--radius-m);
+  }
+}
+
+/* Inline code keeps a smaller radius than code blocks */
+.markdown-rendered :not(pre) > code,
+.cm-s-obsidian .cm-inline-code {
+  --code-radius: var(--radius-s);
+}
+
+/* Callouts tint the table border, so code blocks follow it there as well */
+.callout {
+  --code-border-color: var(--table-border-color);
+}
+
+/* Roomier code blocks in reading view */
+.markdown-rendered pre {
+  padding: var(--size-4-4) var(--size-4-5);
+}
+
+/* Code block language label in reading view. The language is only available
+   as the "language-*" class that Prism adds to <pre>, so the whole class is
+   shown in a monospace font and the 9-character prefix is clipped off.
+   A line height of 1 keeps it low in the bottom padding, away from the last
+   line of code */
+.markdown-rendered pre[class^='language-']::after {
+  content: attr(class);
+  position: absolute;
+  right: var(--size-4-2);
+  bottom: var(--size-2-2);
+  font-family: var(--font-monospace);
+  font-size: var(--font-smallest);
+  line-height: 1;
+  color: var(--text-faint);
+  clip-path: inset(0 0 0 9ch);
+}
+
+/* External images in reading view (embeds use --image-radius already) */
+.markdown-rendered img {
+  border-radius: var(--image-radius);
+}
+
+/* Tables */
+.markdown-rendered table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  & :is(th, td) {
+    padding-block: var(--table-cell-padding-y);
+
+    /* Avoid doubled inner borders: each cell draws only its right and bottom
+       border, Obsidian's first-column rules and the first body row add the
+       outer edges */
+    border-top-width: 0;
+    border-left-width: 0;
+  }
+
+  /* The header borders are transparent (they keep their width so the header
+     text stays aligned with the body), so the body draws its own top edge */
+  & tbody tr:first-child > td {
+    border-top-width: var(--table-border-width);
+  }
+
+  & tbody tr:first-child > td:first-child {
+    border-top-left-radius: var(--table-radius);
+  }
+
+  & tbody tr:first-child > td:last-child {
+    border-top-right-radius: var(--table-radius);
+  }
+
+  & tbody tr:last-child > td:first-child {
+    border-bottom-left-radius: var(--table-radius);
+  }
+
+  & tbody tr:last-child > td:last-child {
+    border-bottom-right-radius: var(--table-radius);
+  }
+}
+
+/* Obsidian shrinks the wrapper to fit-content, which blocks the full width */
+.markdown-source-view.mod-cm6 .cm-table-widget .table-wrapper {
+  width: auto;
+}
+
+/* Live Preview pads the cell wrapper instead of the cell itself */
+.markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+  padding-block: var(--table-cell-padding-y);
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget.is-selected table::after {
+  border-radius: var(--table-radius);
+}
+
+/* Add row/column buttons keep Obsidian's size and are detached from the table.
+   The widget grows by the gap on the end and bottom side so they still fit in
+   its padding, and the end margin grows too so the table keeps its width
+   (Obsidian sets that margin with !important, so it has to be overridden so) */
+.markdown-source-view.mod-cm6 .cm-table-widget {
+  padding-inline-end: calc(
+    var(--table-drag-handle-size) + var(--table-add-button-gap)
+  );
+  padding-bottom: calc(
+    var(--table-drag-handle-size) + var(--table-add-button-gap)
+  );
+  margin-inline-end: calc(
+    -1 * var(--size-4-4) - var(--table-add-button-gap)
+  ) !important;
+  anchor-scope: --table-body;
+
+  & :is(.table-row-btn, .table-col-btn) {
+    border-radius: var(--radius-s);
+  }
+
+  & .table-row-btn {
+    top: calc(100% + var(--table-add-button-gap));
+  }
+
+  /* The header has no borders, so the column button spans only the body.
+     Without body rows there is no anchor and it falls back to the full height */
+  & tbody:not(:empty) {
+    anchor-name: --table-body;
+  }
+
+  & .table-col-btn {
+    position-anchor: --table-body;
+    inset-inline-start: calc(100% + var(--table-add-button-gap));
+    top: anchor(top, 0);
+    bottom: anchor(bottom, 0);
+    height: auto;
+  }
+}
+
+/* Properties: dashed top and bottom border separates them from the content.
+   Limited to notes, the sidebar properties view stays unchanged */
+.markdown-source-view .metadata-container,
+.markdown-preview-view .metadata-container {
+  --metadata-border-width: var(--border-width) 0;
+
+  border-style: dashed;
+}
+
+/* Highlights in reading view look like highlighter strokes: slanted ends that
+   reach a bit past the text, and the ink is densest where the stroke starts.
+   Each wrapped line gets a stroke of its own. Live Preview splits highlights
+   with other formatting inside into separate spans, where the strokes would
+   show the joins, so it keeps Obsidian's flat highlight of the same average
+   intensity */
+.markdown-rendered mark {
+  --highlight-direction: to right;
+
+  margin-inline: -0.25em;
+  padding-inline: 0.25em;
+  border-start-start-radius: 0.8em;
+  border-start-end-radius: 0.3em;
+  border-end-end-radius: 0.8em;
+  border-end-start-radius: 0.3em;
+  background-color: transparent;
+  background-image: linear-gradient(
+    var(--highlight-direction),
+    color-mix(in oklch, var(--highlight-background) 50%, transparent),
+    oklch(from var(--highlight-background) l c h / calc(alpha * 1.3)) 0.6em,
+    color-mix(in oklch, var(--highlight-background) 80%, transparent)
+  );
+  box-decoration-break: clone;
+
+  &:dir(rtl) {
+    --highlight-direction: to left;
+  }
+}
+
+/* Tags look like paper labels: one corner is rounded off (the others get
+   the small radius from the body variables) and a string hole is punched
+   next to it. Live Preview splits the tag into the "#" and the name, the
+   corner and the hole go in the "#" */
+a.tag,
+.cm-hashtag.cm-hashtag-begin {
+  --tag-hole-position: left 0.7em top 0.7em;
+  --tag-hole-radius: 0.2em;
+  --tag-hole-rim: calc(var(--tag-hole-radius) + var(--tag-border-width));
+
+  padding-inline-start: 1.35em;
+  border-start-start-radius: 1em;
+
+  /* The mask punches the hole, the background draws its rim. Half-pixel
+     transitions smooth the edges of such a small circle. Masks are
+     positioned from the border box, the background has to be too, or the
+     rim would be shifted by the border width */
+  background-image: radial-gradient(
+    circle at var(--tag-hole-position),
+    transparent var(--tag-hole-radius),
+    var(--tag-border-color) calc(var(--tag-hole-radius) + 0.5px),
+    var(--tag-border-color) var(--tag-hole-rim),
+    transparent calc(var(--tag-hole-rim) + 0.5px)
+  );
+  background-origin: border-box;
+  mask: radial-gradient(
+    circle at var(--tag-hole-position),
+    transparent var(--tag-hole-radius),
+    #000 calc(var(--tag-hole-radius) + 0.5px)
+  );
+
+  &:dir(rtl) {
+    --tag-hole-position: right 0.7em top 0.7em;
+  }
+}
+
+/* Footnotes are separated by a short rule at the start of the line, like in
+   books, instead of the horizontal rule ornament. Its pseudo-elements can't
+   be overridden here (the nested ::before and ::after get the specificity of
+   the Live Preview selector), so the rule is hidden and the section draws
+   the line itself, keeping the rule's spacing above it */
+.markdown-rendered .footnotes > :is(hr) {
+  display: none;
+}
+
+.markdown-rendered .footnotes {
+  margin-top: var(--size-4-8);
+  padding-top: var(--size-4-4);
+  background-image: linear-gradient(
+    to right,
+    var(--text-accent),
+    var(--fade-into, transparent)
+  );
+  background-size: 33% var(--border-width);
+  background-repeat: no-repeat;
+}
+
+/* Footnote text in a faded ink, so it doesn't compete with the main text */
+.markdown-rendered .footnotes,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-footnote {
+  color: var(--text-muted);
+}
+
+/* Obsidian gives internal links in highlights the text color in reading
+   view. Live Preview keeps the link color (see the .cm-underline color rule
+   below), so reading view does the same */
+.markdown-rendered mark .internal-link {
+  color: var(--link-color);
+}
+
+/* Internal and external links: a thick line in a translucent shade of the
+   link color sits behind the text, instead of an underline, and grows to
+   cover it on hover. Translucency keeps it lighter than the text on light
+   backgrounds and darker on dark ones. In Live Preview the text is in
+   .cm-underline, and links to missing notes are wrapped in .is-unresolved.
+   Links to missing notes and links in properties keep Obsidian's look */
+.markdown-rendered .internal-link:not(.is-unresolved, .metadata-container *),
+.markdown-rendered .external-link:not(.metadata-container *),
+.markdown-source-view.mod-cm6 :is(.cm-link, .cm-url) .cm-underline,
+.markdown-source-view.mod-cm6
+  .cm-hmd-internal-link
+  .cm-underline:not(.is-unresolved *) {
+  --link-background: color-mix(
+    in oklch,
+    currentcolor var(--link-background-opacity),
+    transparent
+  );
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
+
+  background-image: linear-gradient(
+    var(--link-background),
+    var(--link-background)
+  );
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% var(--link-background-height);
+  transition-property: opacity, background-size;
+  transition-duration: var(--anim-duration-fast);
+  transition-timing-function: ease-in-out;
+
+  /* Like Obsidian, skip hover on touch screens where it sticks after a tap */
+  @media (hover: hover) {
+    &:hover {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+/* Live Preview underlines the outer spans of links as well, which passes on
+   to the text. External links get the variables. The outer span of internal
+   links can hold a link to a missing note, so only its hover underline is
+   removed, and only when it isn't one */
+.markdown-source-view.mod-cm6 :is(.cm-link, .cm-url) {
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
+}
+
+@media (hover: hover) {
+  .markdown-source-view.mod-cm6
+    .cm-hmd-internal-link:not(.is-unresolved):hover {
+    text-decoration-line: none;
+  }
+}
+
+/* The lighter hover color would blend into the expanded line, so internal
+   links keep their color (external links do so through the body variables).
+   Reading view sets the hover color on the link itself, Live Preview on the
+   outer span that .cm-underline inherits from */
+.markdown-rendered .internal-link:not(.is-unresolved, .metadata-container *) {
+  --link-color-hover: var(--link-color);
+}
+
+.markdown-source-view.mod-cm6
+  .cm-hmd-internal-link
+  .cm-underline:not(.is-unresolved *) {
+  color: var(--link-color);
+}
+
+/* External link icon in reading view. Obsidian draws a gray icon as
+   a background, which the line above replaces, so it is redrawn after the
+   text in the link color (Lucide "external-link" icon, ISC license).
+   Like Obsidian, it's mirrored in RTL and hidden in print and web viewer */
+.markdown-rendered .external-link:not(.metadata-container *) {
+  padding-inline-end: 0;
+}
+
+.markdown-rendered .external-link:not(.metadata-container *)::after {
+  content: '';
+  display: inline-block;
+  width: 0.825em;
+  height: 0.825em;
+  margin-inline-start: 0.15em;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.markdown-rendered .external-link:not(.metadata-container *):dir(rtl)::after {
+  transform: scaleX(-1);
+}
+
+:is(.print, .webviewer-content)
+  .markdown-rendered
+  .external-link:not(.metadata-container *)::after {
+  display: none;
+}
+
+/* PDF export: Obsidian sets no page breaks, so headings (and callout
+   titles) can end up alone at the bottom of a page, and short blocks get
+   split in two. The export wraps every block in a div, the break after
+   a heading carries over to it */
+.print .markdown-rendered :is(h1, h2, h3, h4, h5, h6, .callout-title) {
+  break-after: avoid;
+}
+
+.print .markdown-rendered :is(.callout, pre, blockquote, .markdown-embed, tr) {
+  break-inside: avoid;
+}
+
+/* Callouts are always expanded in the export, the fold arrow would say
+   otherwise */
+.print .markdown-rendered .callout-fold {
+  display: none;
+}
+
+/* In the light theme Obsidian blends callouts with "darken", which some PDF
+   viewers (ONLYOFFICE) can't draw and show them all gray. On the white page
+   it looks the same as no blending.
+   Lines fading into transparency are stored in the PDF in a way that PDF
+   viewers only approximate, and they fade through gray or black there, so
+   they fade into the page background instead. Inside callouts that's 10% of
+   the callout color over what is behind it, which the content passes on to
+   nested callouts */
+.print {
+  --callout-blend-mode: normal;
+  --fade-into: var(--background-primary);
+}
+
+.print .callout {
+  --fade-into: color-mix(
+    in srgb,
+    var(--callout-color) 10%,
+    var(--callout-backdrop, var(--background-primary))
+  );
+}
+
+.print .callout-content {
+  --callout-backdrop: var(--fade-into);
+}
+
+/* Some PDF viewers (GNOME) can't draw masks, so the tag hole isn't punched
+   but painted in the background color, inside its rim. For the same reason
+   as the fading lines, the tag colors are mixed with the background instead
+   of being translucent */
+.print .markdown-rendered a.tag {
+  --tag-background: color-mix(
+    in srgb,
+    var(--interactive-accent) 10%,
+    var(--fade-into)
+  );
+  --tag-border-color: color-mix(
+    in srgb,
+    var(--interactive-accent) 45%,
+    var(--fade-into)
+  );
+
+  mask: none;
+  background-image: radial-gradient(
+    circle at var(--tag-hole-position),
+    var(--fade-into) var(--tag-hole-radius),
+    var(--tag-border-color) calc(var(--tag-hole-radius) + 0.5px),
+    var(--tag-border-color) var(--tag-hole-rim),
+    var(--tag-background) calc(var(--tag-hole-rim) + 0.5px)
+  );
+}
+
+/* The export leaves out Obsidian's bullets (.list-bullet) and falls back to
+   the plain list markers, so list items draw the bullet themselves, from the
+   same variables (the nested levels are set with the bullets above) and in
+   the same place: 0.8em before the text, in the middle of the first line */
+.print .markdown-rendered ul > li:not(.task-list-item) {
+  position: relative;
+  list-style: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: calc(-0.8em - var(--list-bullet-size) / 2);
+    top: calc(0.5lh - var(--list-bullet-size) / 2);
+    width: var(--list-bullet-size);
+    height: var(--list-bullet-size);
+    border: var(--list-bullet-border);
+    border-radius: var(--list-bullet-radius);
+    background-color: var(--list-marker-color);
+    transform: var(--list-bullet-transform);
+  }
+}

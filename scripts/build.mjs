@@ -31,8 +31,9 @@ const MIME_TYPES = {
 const BANNER = `/* Generated from ${SOURCE} by scripts/build.mjs, don't edit this file */\n\n`;
 
 // url('file'), url("file") or url(file), skipping data URLs, absolute paths,
-// remote URLs (Obsidian blocks them anyway) and SVG fragment references
-const RELATIVE_URL = /url\(\s*(['"]?)(?![a-z]+:|\/|#)([^'")]+)\1\s*\)/gi;
+// remote URLs (Obsidian blocks them anyway) and SVG fragment references,
+// also URL-encoded ones (%23) inside SVG data URLs
+const RELATIVE_URL = /url\(\s*(['"]?)(?![a-z]+:|\/|#|%23)([^'")]+)\1\s*\)/gi;
 
 const source = readFileSync(SOURCE, "utf8");
 

@@ -105,7 +105,25 @@ body {
 
   /* Blockquotes */
 
-  --blockquote-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 36'%3E%3Cpath d='M18.5 4.5C9.5 7 3 14.5 3 24C3 28.4 6.6 32 11 32C15.4 32 19 28.4 19 24C19 19.6 15.4 16 11 16C10.5 16 10 16 9.6 16.1C11 11.4 14.4 7.8 19.6 6.2Z'/%3E%3Cpath transform='translate(24 0)' d='M18.5 4.5C9.5 7 3 14.5 3 24C3 28.4 6.6 32 11 32C15.4 32 19 28.4 19 24C19 19.6 15.4 16 11 16C10.5 16 10 16 9.6 16.1C11 11.4 14.4 7.8 19.6 6.2Z'/%3E%3C/svg%3E");
+  /* Two ink drops (designed on a 46 x 36 grid), cut out with clip-path */
+  --blockquote-mark: shape(
+    from 40.22% 12.5%,
+    curve to 6.52% 66.67% with 20.65% 19.44% / 6.52% 40.28%,
+    curve to 23.91% 88.89% with 6.52% 78.89% / 14.35% 88.89%,
+    curve to 41.3% 66.67% with 33.48% 88.89% / 41.3% 78.89%,
+    curve to 23.91% 44.44% with 41.3% 54.44% / 33.48% 44.44%,
+    curve to 20.87% 44.72% with 22.83% 44.44% / 21.74% 44.44%,
+    curve to 42.61% 17.22% with 23.91% 31.67% / 31.3% 21.67%,
+    close,
+    move to 92.39% 12.5%,
+    curve to 58.7% 66.67% with 72.83% 19.44% / 58.7% 40.28%,
+    curve to 76.09% 88.89% with 58.7% 78.89% / 66.52% 88.89%,
+    curve to 93.48% 66.67% with 85.65% 88.89% / 93.48% 78.89%,
+    curve to 76.09% 44.44% with 93.48% 54.44% / 85.65% 44.44%,
+    curve to 73.04% 44.72% with 75% 44.44% / 73.91% 44.44%,
+    curve to 94.78% 17.22% with 76.09% 31.67% / 83.48% 21.67%,
+    close
+  );
   --blockquote-mark-color: var(--blockquote-border-color);
 
   /* Tags */
@@ -126,14 +144,16 @@ body {
   --callout-title-weight: 400;
 }
 
-/* Header underline, the note title above the content gets it as well */
+/* Header underline, the note title above the content gets it as well.
+   Like the other fading lines, it fades into --fade-into, which the PDF
+   export sets to the background (see the end of the file) */
 .markdown-rendered :is(h1, h2, h3, h4, h5, h6),
 .markdown-source-view.mod-cm6 .HyperMD-header,
 .inline-title {
   background-image: linear-gradient(
     to right,
     var(--text-accent),
-    transparent 50%
+    var(--fade-into, transparent) 50%
   );
   background-size: 100% var(--border-width);
   background-position: left bottom 0.2em;
@@ -189,10 +209,10 @@ body {
     height: var(--hr-thickness);
     background-image: linear-gradient(
       to right,
-      transparent 10%,
+      var(--fade-into, transparent) 10%,
       var(--color-accent) 40%,
       var(--color-accent) 60%,
-      transparent 90%
+      var(--fade-into, transparent) 90%
     );
   }
 
@@ -212,9 +232,12 @@ body {
    levels re-scope those variables on the bullet: an outlined diamond on the
    2nd level, a small dot on the 3rd and deeper. Obsidian's hover and
    collapsed states still fill the bullet. Live Preview marks the level with
-   cm-list-1..3, repeating every three levels. :where() keeps all selectors at
-   the same specificity, so the dot rule wins on deeper levels by order */
+   cm-list-1..3, repeating every three levels. The PDF export draws them on
+   the list item itself (see the end of the file), which gets the variables
+   for its ::before. :where() keeps all selectors at the same specificity, so
+   the dot rule wins on deeper levels by order */
 :where(.markdown-rendered :is(ul, ol) ul > li) > .list-bullet,
+:where(.print .markdown-rendered :is(ul, ol) ul > li),
 :where(.markdown-source-view.mod-cm6 .cm-formatting-list-ul.cm-list-2)
   .list-bullet {
   --list-bullet-border: 1px solid var(--text-accent);
@@ -222,6 +245,7 @@ body {
 }
 
 :where(.markdown-rendered :is(ul, ol) :is(ul, ol) ul > li) > .list-bullet,
+:where(.print .markdown-rendered :is(ul, ol) :is(ul, ol) ul > li),
 :where(.markdown-source-view.mod-cm6 .cm-formatting-list-ul.cm-list-3)
   .list-bullet {
   --list-bullet-border: none;
@@ -264,8 +288,18 @@ input.task-list-item-checkbox:checked::after {
   width: 150%;
   height: 150%;
   background-color: var(--text-accent);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.8 12.9C4.3 14.4 6.5 17.4 8.3 21.6C9.4 21.6 9.4 21.6 10.1 20.6C13.3 13.6 17.6 7.4 23.2 1.6C16.6 5.4 12.4 10.4 9.3 15.6C7.7 13.4 5.8 11.8 3.8 10.8Z'/%3E%3C/svg%3E")
-    center / contain no-repeat;
+
+  /* Obsidian cuts its own tick out with a mask */
+  mask: none;
+  clip-path: shape(
+    from 7.5% 53.75%,
+    curve to 34.58% 90% with 17.92% 60% / 27.08% 72.5%,
+    curve to 42.08% 85.83% with 39.17% 90% / 39.17% 90%,
+    curve to 96.67% 6.67% with 55.42% 56.67% / 73.33% 30.83%,
+    curve to 38.75% 65% with 69.17% 22.5% / 51.67% 43.33%,
+    curve to 15.83% 45% with 32.08% 55.83% / 24.17% 49.17%,
+    close
+  );
 }
 
 /* Blockquotes: a quotation mark made of two ink drops hangs at the top of the
@@ -275,9 +309,9 @@ input.task-list-item-checkbox:checked::after {
   position: relative;
   border-image: linear-gradient(
       to bottom,
-      transparent 2.2em,
+      var(--fade-into, transparent) 2.2em,
       var(--blockquote-border-color) 2.2em,
-      transparent
+      var(--fade-into, transparent)
     )
     1;
 }
@@ -288,9 +322,9 @@ input.task-list-item-checkbox:checked::after {
   top: 0.15em;
   inset-inline-start: calc(var(--blockquote-border-thickness) / -2 - 0.625em);
   width: 1.25em;
-  height: 1em;
+  aspect-ratio: 46 / 36;
   background-color: var(--blockquote-mark-color);
-  mask: var(--blockquote-mark) center / contain no-repeat;
+  clip-path: var(--blockquote-mark);
 }
 
 /* Live Preview draws the border separately for every line, so it can't fade.
@@ -307,9 +341,9 @@ input.task-list-item-checkbox:checked::after {
     top: 0.15em;
     inset-inline-start: calc(var(--blockquote-border-thickness) / 2 - 0.625em);
     width: 1.25em;
-    height: 1em;
+    aspect-ratio: 46 / 36;
     background-color: var(--blockquote-mark-color);
-    mask: var(--blockquote-mark) center / contain no-repeat;
+    clip-path: var(--blockquote-mark);
   }
 }
 
@@ -326,7 +360,7 @@ input.task-list-item-checkbox:checked::after {
   background-image: linear-gradient(
     to right,
     var(--callout-color),
-    transparent 50%
+    var(--fade-into, transparent) 50%
   );
   background-size: 100% var(--border-width);
   background-repeat: no-repeat;
@@ -582,7 +616,11 @@ a.tag,
 .markdown-rendered .footnotes {
   margin-top: var(--size-4-8);
   padding-top: var(--size-4-4);
-  background-image: linear-gradient(to right, var(--text-accent), transparent);
+  background-image: linear-gradient(
+    to right,
+    var(--text-accent),
+    var(--fade-into, transparent)
+  );
   background-size: 33% var(--border-width);
   background-repeat: no-repeat;
 }
@@ -716,4 +754,77 @@ a.tag,
    otherwise */
 .print .markdown-rendered .callout-fold {
   display: none;
+}
+
+/* In the light theme Obsidian blends callouts with "darken", which some PDF
+   viewers (ONLYOFFICE) can't draw and show them all gray. On the white page
+   it looks the same as no blending.
+   Lines fading into transparency are stored in the PDF in a way that PDF
+   viewers only approximate, and they fade through gray or black there, so
+   they fade into the page background instead. Inside callouts that's 10% of
+   the callout color over what is behind it, which the content passes on to
+   nested callouts */
+.print {
+  --callout-blend-mode: normal;
+  --fade-into: var(--background-primary);
+}
+
+.print .callout {
+  --fade-into: color-mix(
+    in srgb,
+    var(--callout-color) 10%,
+    var(--callout-backdrop, var(--background-primary))
+  );
+}
+
+.print .callout-content {
+  --callout-backdrop: var(--fade-into);
+}
+
+/* Some PDF viewers (GNOME) can't draw masks, so the tag hole isn't punched
+   but painted in the background color, inside its rim. For the same reason
+   as the fading lines, the tag colors are mixed with the background instead
+   of being translucent */
+.print .markdown-rendered a.tag {
+  --tag-background: color-mix(
+    in srgb,
+    var(--interactive-accent) 10%,
+    var(--fade-into)
+  );
+  --tag-border-color: color-mix(
+    in srgb,
+    var(--interactive-accent) 45%,
+    var(--fade-into)
+  );
+
+  mask: none;
+  background-image: radial-gradient(
+    circle at var(--tag-hole-position),
+    var(--fade-into) var(--tag-hole-radius),
+    var(--tag-border-color) calc(var(--tag-hole-radius) + 0.5px),
+    var(--tag-border-color) var(--tag-hole-rim),
+    var(--tag-background) calc(var(--tag-hole-rim) + 0.5px)
+  );
+}
+
+/* The export leaves out Obsidian's bullets (.list-bullet) and falls back to
+   the plain list markers, so list items draw the bullet themselves, from the
+   same variables (the nested levels are set with the bullets above) and in
+   the same place: 0.8em before the text, in the middle of the first line */
+.print .markdown-rendered ul > li:not(.task-list-item) {
+  position: relative;
+  list-style: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: calc(-0.8em - var(--list-bullet-size) / 2);
+    top: calc(0.5lh - var(--list-bullet-size) / 2);
+    width: var(--list-bullet-size);
+    height: var(--list-bullet-size);
+    border: var(--list-bullet-border);
+    border-radius: var(--list-bullet-radius);
+    background-color: var(--list-marker-color);
+    transform: var(--list-bullet-transform);
+  }
 }

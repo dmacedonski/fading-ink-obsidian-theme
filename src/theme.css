@@ -142,6 +142,15 @@ body {
 
   --paper-texture: var(--paper-grain), var(--paper-tone);
 
+  /* Interface: the active note (and other active items) in the sidebars is
+     marked with a sepia tint, like a bookmark, not with the hover color */
+
+  --nav-item-background-active: color-mix(
+    in oklch,
+    var(--color-accent) 12%,
+    transparent
+  );
+
   /* Callouts */
 
   --callout-border-width: var(--border-width);
@@ -198,11 +207,34 @@ body {
   --color-pink: #a64a6d;
   --color-pink-rgb: 166, 74, 109;
 
-  /* Paper texture: SVG noise in the ink color, darkening the paper by a few
-     percent */
+  /* Interface: ink instead of black, which Obsidian mixes into hover
+     backgrounds, scrollbars, indentation guides and more. Tooltips and
+     notices are written in ink, the cover behind dialogs is paper-toned.
+     Chrome drops the hue of colors with an OKLCH chroma below 0.02 when
+     mixing them in OKLCH (they turn purplish), so Obsidian's mixes get an
+     ink a touch more saturated than the text, and the theme mixes in sRGB */
 
-  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.18 0 0 0 0 0.1 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --paper-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.15 0 0 0 0.16 -0.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --mono-100: #30261a;
+  --mono-rgb-100: 48, 38, 26;
+  --background-modifier-message: color-mix(
+    in srgb,
+    var(--color-base-100) 92%,
+    transparent
+  );
+  --background-modifier-cover: color-mix(
+    in srgb,
+    var(--color-base-40) 35%,
+    transparent
+  );
+  --tooltip-color: var(--color-base-00);
+  --notice-color: var(--color-base-00);
+
+  /* Paper texture: SVG noise in the ink color, darkening the paper by a few
+     percent. The filter covers exactly the tile (by default it reaches 10%
+     past it), so the stitched noise repeats without seams */
+
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.18 0 0 0 0 0.1 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.15 0 0 0 0.16 -0.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .theme-dark {
@@ -249,11 +281,30 @@ body {
   --color-pink: #d986a6;
   --color-pink-rgb: 217, 134, 166;
 
+  /* Interface: the light ink instead of white (see the light theme).
+     Tooltips and notices are a shade lighter than the sidebars, the cover
+     behind dialogs darkens with the paper color */
+
+  --mono-100: var(--color-base-100);
+  --mono-rgb-100: 230, 220, 203;
+  --background-modifier-message: color-mix(
+    in srgb,
+    var(--color-base-35) 95%,
+    transparent
+  );
+  --background-modifier-cover: color-mix(
+    in srgb,
+    var(--color-base-00) 70%,
+    transparent
+  );
+  --tooltip-color: var(--color-base-100);
+  --notice-color: var(--color-base-100);
+
   /* Paper texture: SVG noise in the paper color, lightening it by a few
      percent */
 
-  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.92 0 0 0 0 0.8 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --paper-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.9 0 0 0 0 0.75 0 0 0 0.1 -0.03'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.92 0 0 0 0 0.8 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.9 0 0 0 0 0.75 0 0 0 0.1 -0.03'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* PDF export prints on white paper, not in the paper color */

@@ -32,8 +32,12 @@ jobs:
         run: |
           tag="${GITHUB_REF#refs/tags/}"
 
+          # The notes are the version's entry in CHANGELOG.md, the release
+          # stops here if there isn't one
+          node scripts/release-notes.mjs "$tag" > release-notes.md
+
           gh release create "$tag" \
             --title="$tag" \
-            --generate-notes \
+            --notes-file=release-notes.md \
             --draft \
             manifest.json theme.css

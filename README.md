@@ -18,6 +18,14 @@ The theme sets the text in Lora, which can still be replaced in **Settings → A
 
 Requires Obsidian 1.14.4 or newer.
 
+## Known limitations
+
+- List bullets have a style for each of the first three levels. In reading view the deeper levels keep the style of the third, in Live Preview the styles start over from the fourth level.
+- In reading view, the strikethrough line of a sentence with italics isn't straight: it runs higher over the italic words, which are set in the handwritten font.
+- Highlights look like strokes of a highlighter in reading view only. Live Preview splits formatted text into separate pieces, so highlights stay flat there.
+- The line under a heading follows its text, but a heading that wraps onto more lines is underlined across the whole column.
+- The note title above the content is only as wide as its text, so clicking to edit it works on the text, not anywhere in its row.
+
 ## Development
 
 The theme is written in `src/theme.css`. The build embeds the fonts from `fonts/` in `theme.css`, converted to WOFF2, since Obsidian themes can't load files from disk.

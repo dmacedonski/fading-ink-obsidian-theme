@@ -35,6 +35,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - Gradient positions don't accept 3-value syntax (`left 0.7em center` is invalid, `left 0.7em top 50%` works).
 - Masks are positioned from the border box, backgrounds from the padding box.
 - Live Preview splits formatted text into separate token spans (e.g. a highlight with bold inside), so per-element decorations show joins there.
+- Text direction is set per block: `dir="auto"` on headings in reading view, a `dir` attribute on every Live Preview line, so one note can mix directions. Obsidian sets `margin: 0 !important` on Live Preview lines (`.cm-content > *`); to place a narrowed block on its own start side use `justify-self: self-start` (block layout, Chromium 130+).
 - Obsidian's own checkbox tick is a mask on `::after`, reset it (`mask: none`) when drawing another shape.
 - PDF export (`body.theme-light > div.print > div.markdown-preview-view.markdown-rendered`, every block wrapped in a `div`, `hr` not wrapped): no `.list-bullet` (the theme draws bullets on `li::before`), callouts are expanded, no `is-unresolved` on links.
 - PDF viewers: gradients fading into transparency turn gray/black (GNOME, ONLYOFFICE), so fading lines use `var(--fade-into, transparent)` and the export sets `--fade-into` to the background; masks don't render in GNOME (use `clip-path: shape()` or paint instead); "darken" blending turns callouts gray in ONLYOFFICE.

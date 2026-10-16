@@ -391,20 +391,32 @@ body {
   background-attachment: local;
 }
 
-/* Header underline, the note title above the content gets it as well.
-   Like the other fading lines, it fades into --fade-into, which the PDF
-   export sets to the background (see the end of the file) */
+/* Header underline, the note title above the content gets it as well. The
+   header is only as wide as its text, so the line follows the text: full ink
+   under its first half, faded out by its end. A wrapped header fills the
+   column, and the line with it. justify-self keeps a header on its own start
+   side when its direction differs from the note's, Live Preview doesn't allow
+   margins on lines. Like the other fading lines, it fades into --fade-into,
+   which the PDF export sets to the background (see the end of the file) */
 .markdown-rendered :is(h1, h2, h3, h4, h5, h6),
 .markdown-source-view.mod-cm6 .HyperMD-header,
 .inline-title {
+  --header-line-direction: to right;
+
+  width: fit-content;
+  justify-self: self-start;
   background-image: linear-gradient(
-    to right,
-    var(--text-accent),
-    var(--fade-into, transparent) 50%
+    var(--header-line-direction),
+    var(--text-accent) 50%,
+    var(--fade-into, transparent)
   );
   background-size: 100% var(--border-width);
   background-position: left bottom 0.2em;
   background-repeat: no-repeat;
+
+  &:dir(rtl) {
+    --header-line-direction: to left;
+  }
 }
 
 /* Italic text uses the handwritten font as well. Dancing Script has no

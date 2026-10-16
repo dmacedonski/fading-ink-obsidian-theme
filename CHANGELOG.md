@@ -26,5 +26,6 @@ _Initial release._
 - Add dashed lines above and below properties ([`e2fa470`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/e2fa470))
 - Add rounded corners to images and embedded bases ([`ca68f02`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/ca68f02), [`e6cf3c1`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/e6cf3c1))
 - Add page breaks and styles that hold up in PDF viewers to the PDF export ([`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec), [`54c02f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/54c02f7))
+- Document installation, development and releases in the README ([`f28262d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f28262d))
 
 [0.1.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.1.0

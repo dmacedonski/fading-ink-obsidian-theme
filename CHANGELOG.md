@@ -1,0 +1,31 @@
+# Changelog
+
+## [0.1.0] - 2026-10-16
+
+_Initial release._
+
+### Added
+
+- Add Lora as the text font, embedded in the theme ([`b03f0e3`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/b03f0e3), [`8c09d17`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8c09d17))
+- Add the handwritten Dancing Script font for headings, the note title, italics and list numbers ([`0894b59`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/0894b59), [`44d4909`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/44d4909), [`18c1950`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/18c1950))
+- Add a fading underline to headings and the note title ([`0894b59`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/0894b59), [`e6cf3c1`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/e6cf3c1), [`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec))
+- Add a thick translucent line behind links instead of an underline, growing on hover ([`acaaa26`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/acaaa26), [`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec))
+- Add an icon in the link color to external links in reading view ([`acaaa26`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/acaaa26))
+- Add accent diamond bullets to lists, with an outlined diamond and a dot on deeper levels ([`18c1950`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/18c1950))
+- Add a hand-drawn tick and faded text to done tasks ([`18c1950`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/18c1950))
+- Add a hanging quotation mark to blockquotes, with a border fading out downwards in reading view ([`f35da6d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f35da6d))
+- Add handwritten, underlined titles and borders in the callout color to callouts ([`7360fcf`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/7360fcf))
+- Add borders, rounded corners and a language label in reading view to code blocks ([`bcedb75`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/bcedb75), [`ca68f02`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/ca68f02), [`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec))
+- Add full width, rounded borders, a borderless header and roomier cells to tables ([`4dfe1be`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/4dfe1be), [`ca68f02`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/ca68f02))
+- Add highlighter strokes with slanted ends to highlights in reading view ([`0e4098d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/0e4098d))
+- Add a paper label shape with a string hole to tags ([`3acf2c2`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/3acf2c2))
+- Add a pen stroke in the accent color over faded text to strikethrough ([`d4ac6f0`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/d4ac6f0))
+- Add a fading line with a tilted section sign to horizontal rules ([`5bf1be3`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/5bf1be3))
+- Add faded text and a short rule above them in reading view to footnotes ([`28d3ca4`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/28d3ca4))
+- Add a dashed border to embedded notes ([`f76db85`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f76db85))
+- Add dashed lines above and below properties ([`e2fa470`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/e2fa470))
+- Add rounded corners to images and embedded bases ([`ca68f02`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/ca68f02), [`e6cf3c1`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/e6cf3c1))
+- Add page breaks and styles that hold up in PDF viewers to the PDF export ([`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec), [`54c02f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/54c02f7))
+- Document installation, development and releases in the README ([`f28262d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f28262d))
+
+[0.1.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.1.0

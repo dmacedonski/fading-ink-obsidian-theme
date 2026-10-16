@@ -23,7 +23,7 @@ Requires Obsidian 1.14.4 or newer.
 - List bullets have a style for each of the first three levels. In reading view the deeper levels keep the style of the third, in Live Preview the styles start over from the fourth level.
 - In reading view, the strikethrough line of a sentence with italics isn't straight: it runs higher over the italic words, which are set in the handwritten font.
 - Highlights look like strokes of a highlighter in reading view only. Live Preview splits formatted text into separate pieces, so highlights stay flat there.
-- The line under a heading follows its text, but a heading that wraps onto more lines is underlined across the whole column.
+- The line under a heading or a callout title follows its text, but a heading that wraps onto more lines is underlined across the whole column, and a callout title across the whole callout.
 - The note title above the content is only as wide as its text, so clicking to edit it works on the text, not anywhere in its row.
 
 ## Development

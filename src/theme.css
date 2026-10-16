@@ -617,17 +617,30 @@ input.task-list-item-checkbox:checked::after {
   font-family: 'Dancing Script', cursive;
 }
 
-/* Callout titles are underlined like headers, in the callout color. The line
-   is drawn on top of the content, which Obsidian adds only to callouts with
-   more than a title and hides when collapsing, so the line goes with it */
-.callout-content {
+/* Callout titles are underlined like headers, in the callout color and along
+   the title text, which is as wide as the text already. Only callouts with
+   content under the title get the line: Obsidian adds the content only to
+   callouts with more than a title, and hides it when collapsing. The PDF
+   export shows the content of collapsed callouts but keeps their class. The
+   title takes its direction from its own text, the line starts on its side */
+.callout:not(.is-collapsed)
+  > .callout-title:not(:last-child)
+  > .callout-title-inner,
+.print .callout > .callout-title:not(:last-child) > .callout-title-inner {
+  --callout-line-direction: to right;
+
   background-image: linear-gradient(
-    to right,
-    var(--callout-color),
-    var(--fade-into, transparent) 50%
+    var(--callout-line-direction),
+    var(--callout-color) 50%,
+    var(--fade-into, transparent)
   );
   background-size: 100% var(--border-width);
+  background-position: left bottom;
   background-repeat: no-repeat;
+
+  &:dir(rtl) {
+    --callout-line-direction: to left;
+  }
 }
 
 /* Embedded notes look like clippings from another page: a dashed border all
@@ -878,15 +891,24 @@ a.tag,
 }
 
 .markdown-rendered .footnotes {
+  --footnotes-line-direction: to right;
+
   margin-top: var(--size-4-8);
   padding-top: var(--size-4-4);
   background-image: linear-gradient(
-    to right,
+    var(--footnotes-line-direction),
     var(--text-accent),
     var(--fade-into, transparent)
   );
   background-size: 33% var(--border-width);
+  background-position: left top;
   background-repeat: no-repeat;
+
+  &:dir(rtl) {
+    --footnotes-line-direction: to left;
+
+    background-position: right top;
+  }
 }
 
 /* Footnote text in a faded ink, so it doesn't compete with the main text */

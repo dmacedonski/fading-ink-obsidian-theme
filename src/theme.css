@@ -34,19 +34,19 @@ body {
 
   --h1-font: 'Dancing Script';
   --h1-weight: 400;
-  --h1-size: 1.875rem;
+  --h1-size: 2.25rem;
   --h1-line-height: var(--line-height-tight);
   --h2-font: 'Dancing Script';
   --h2-weight: 400;
-  --h2-size: 1.5rem;
+  --h2-size: 1.875rem;
   --h2-line-height: var(--line-height-tight);
   --h3-font: 'Dancing Script';
   --h3-weight: 400;
-  --h3-size: 1.25rem;
+  --h3-size: 1.5rem;
   --h3-line-height: var(--line-height-tight);
   --h4-font: 'Dancing Script';
   --h4-weight: 400;
-  --h4-size: 1.125rem;
+  --h4-size: 1.375rem;
   --h4-line-height: var(--line-height-tight);
   --h5-font: 'Dancing Script';
   --h5-weight: var(--h4-weight);
@@ -384,7 +384,9 @@ input.task-list-item-checkbox:checked::after {
 
 /* Code block language label in reading view. The language is only available
    as the "language-*" class that Prism adds to <pre>, so the whole class is
-   shown in a monospace font and the 9-character prefix is clipped off */
+   shown in a monospace font and the 9-character prefix is clipped off.
+   A line height of 1 keeps it low in the bottom padding, away from the last
+   line of code */
 .markdown-rendered pre[class^='language-']::after {
   content: attr(class);
   position: absolute;
@@ -392,6 +394,7 @@ input.task-list-item-checkbox:checked::after {
   bottom: var(--size-2-2);
   font-family: var(--font-monospace);
   font-size: var(--font-smallest);
+  line-height: 1;
   color: var(--text-faint);
   clip-path: inset(0 0 0 9ch);
 }
@@ -598,11 +601,11 @@ a.tag,
 }
 
 /* Internal and external links: a thick line in a translucent shade of the
-   link color sits behind the text and grows to cover it on hover.
-   Translucency keeps it lighter than the text on light backgrounds and
-   darker on dark ones. In Live Preview the text is in .cm-underline, and
-   links to missing notes are wrapped in .is-unresolved. Links to missing
-   notes and links in properties keep Obsidian's look */
+   link color sits behind the text, instead of an underline, and grows to
+   cover it on hover. Translucency keeps it lighter than the text on light
+   backgrounds and darker on dark ones. In Live Preview the text is in
+   .cm-underline, and links to missing notes are wrapped in .is-unresolved.
+   Links to missing notes and links in properties keep Obsidian's look */
 .markdown-rendered .internal-link:not(.is-unresolved, .metadata-container *),
 .markdown-rendered .external-link:not(.metadata-container *),
 .markdown-source-view.mod-cm6 :is(.cm-link, .cm-url) .cm-underline,
@@ -614,6 +617,10 @@ a.tag,
     currentcolor var(--link-background-opacity),
     transparent
   );
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
 
   background-image: linear-gradient(
     var(--link-background),
@@ -631,6 +638,22 @@ a.tag,
     &:hover {
       background-size: 100% 100%;
     }
+  }
+}
+
+/* Live Preview underlines the outer spans of links as well, which passes on
+   to the text. External links get the variables. The outer span of internal
+   links can hold a link to a missing note, so only its hover underline is
+   removed, and only when it isn't one */
+.markdown-source-view.mod-cm6 :is(.cm-link, .cm-url) {
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
+}
+
+@media (hover: hover) {
+  .markdown-source-view.mod-cm6
+    .cm-hmd-internal-link:not(.is-unresolved):hover {
+    text-decoration-line: none;
   }
 }
 
@@ -674,5 +697,23 @@ a.tag,
 :is(.print, .webviewer-content)
   .markdown-rendered
   .external-link:not(.metadata-container *)::after {
+  display: none;
+}
+
+/* PDF export: Obsidian sets no page breaks, so headings (and callout
+   titles) can end up alone at the bottom of a page, and short blocks get
+   split in two. The export wraps every block in a div, the break after
+   a heading carries over to it */
+.print .markdown-rendered :is(h1, h2, h3, h4, h5, h6, .callout-title) {
+  break-after: avoid;
+}
+
+.print .markdown-rendered :is(.callout, pre, blockquote, .markdown-embed, tr) {
+  break-inside: avoid;
+}
+
+/* Callouts are always expanded in the export, the fold arrow would say
+   otherwise */
+.print .markdown-rendered .callout-fold {
   display: none;
 }

@@ -103,28 +103,10 @@ body {
   --checklist-done-decoration: none;
   --checklist-done-color: var(--text-faint);
 
-  /* Blockquotes */
+  /* Blockquotes, someone else's words in faded ink */
 
-  /* Two ink drops (designed on a 46 x 36 grid), cut out with clip-path */
-  --blockquote-mark: shape(
-    from 40.22% 12.5%,
-    curve to 6.52% 66.67% with 20.65% 19.44% / 6.52% 40.28%,
-    curve to 23.91% 88.89% with 6.52% 78.89% / 14.35% 88.89%,
-    curve to 41.3% 66.67% with 33.48% 88.89% / 41.3% 78.89%,
-    curve to 23.91% 44.44% with 41.3% 54.44% / 33.48% 44.44%,
-    curve to 20.87% 44.72% with 22.83% 44.44% / 21.74% 44.44%,
-    curve to 42.61% 17.22% with 23.91% 31.67% / 31.3% 21.67%,
-    close,
-    move to 92.39% 12.5%,
-    curve to 58.7% 66.67% with 72.83% 19.44% / 58.7% 40.28%,
-    curve to 76.09% 88.89% with 58.7% 78.89% / 66.52% 88.89%,
-    curve to 93.48% 66.67% with 85.65% 88.89% / 93.48% 78.89%,
-    curve to 76.09% 44.44% with 93.48% 54.44% / 85.65% 44.44%,
-    curve to 73.04% 44.72% with 75% 44.44% / 73.91% 44.44%,
-    curve to 94.78% 17.22% with 76.09% 31.67% / 83.48% 21.67%,
-    close
-  );
-  --blockquote-mark-color: var(--blockquote-border-color);
+  --blockquote-border-thickness: 1.5px;
+  --blockquote-color: var(--text-muted);
 
   /* Tags */
 
@@ -566,49 +548,33 @@ input.task-list-item-checkbox:checked::after {
   );
 }
 
-/* Blockquotes: a quotation mark made of two ink drops hangs at the top of the
-   border, which starts below it and fades out downwards. Only the outermost
-   quote gets it */
-.markdown-rendered blockquote:not(blockquote blockquote) {
+/* Blockquotes are marked like a passage in a book: a pen stroke down the
+   margin, which thins out towards its end as the nib lifts and fades like the
+   other lines. The stroke is drawn over the border, which keeps its place
+   (its color can't be re-scoped, the stroke takes it). Live Preview draws the
+   border separately for every line, so it stays a plain line there */
+.markdown-rendered blockquote {
   position: relative;
-  border-image: linear-gradient(
-      to bottom,
-      var(--fade-into, transparent) 2.2em,
-      var(--blockquote-border-color) 2.2em,
-      var(--fade-into, transparent)
-    )
-    1;
+  border-inline-start-color: transparent;
 }
 
-.markdown-rendered blockquote:not(blockquote blockquote)::before {
+.markdown-rendered blockquote::before {
   content: '';
   position: absolute;
-  top: 0.15em;
-  inset-inline-start: calc(var(--blockquote-border-thickness) / -2 - 0.625em);
-  width: 1.25em;
-  aspect-ratio: 46 / 36;
-  background-color: var(--blockquote-mark-color);
-  clip-path: var(--blockquote-mark);
-}
-
-/* Live Preview draws the border separately for every line, so it can't fade.
-   The mark goes on the first quote line (callouts being edited are quote
-   lines too), whose own piece of the border is hidden */
-.markdown-source-view.mod-cm6.is-live-preview
-  .cm-line:not(.HyperMD-quote)
-  + .HyperMD-quote:not(.HyperMD-callout) {
-  --blockquote-border-color: transparent;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0.15em;
-    inset-inline-start: calc(var(--blockquote-border-thickness) / 2 - 0.625em);
-    width: 1.25em;
-    aspect-ratio: 46 / 36;
-    background-color: var(--blockquote-mark-color);
-    clip-path: var(--blockquote-mark);
-  }
+  inset-block: 0;
+  inset-inline-start: calc(var(--blockquote-border-thickness) * -1);
+  width: var(--blockquote-border-thickness);
+  background-image: linear-gradient(
+    to bottom,
+    var(--blockquote-border-color) 40%,
+    var(--fade-into, transparent)
+  );
+  clip-path: shape(
+    from 0% 0%,
+    line to 100% 0%,
+    curve to 50% 100% with 100% 55%,
+    curve to 0% 0% with 0% 55%
+  );
 }
 
 /* Callout titles in the handwritten font, enlarged like italic text (see the

@@ -18,7 +18,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - `scripts/build.mjs`: embeds every relative `url()` as a data URL, converting TTF/OTF to WOFF2 with `scripts/woff2.mjs` (Brotli from Node, tables stored unchanged).
 - `scripts/release-notes.mjs`: prints a version's CHANGELOG entry for the GitHub release.
 - `npm run build`, `npm run dev` (watch), `npm run lint` (stylelint with stylelint-config-obsidianmd).
-- Lint baseline: 5 errors for `.HyperMD-*` classes (kebab-case rule, unavoidable for Live Preview) and 10 warnings, all false positives (`clip-path`, `text-decoration-*`, `break-*` "partially supported", one `!important` that overrides Obsidian's own). Anything beyond that is new.
+- Lint baseline: 2 errors for `.HyperMD-*` classes (kebab-case rule, unavoidable for Live Preview) and 9 warnings, all false positives (`clip-path`, `text-decoration-*`, `break-*` "partially supported", one `!important` that overrides Obsidian's own). Anything beyond that is new.
 
 ## CSS conventions
 

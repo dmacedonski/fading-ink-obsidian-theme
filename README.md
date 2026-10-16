@@ -2,8 +2,7 @@
 
 An [Obsidian](https://obsidian.md) theme inspired by handwritten notes on paper. Headings and italics are set in a handwritten font, the text in a calm book serif, and the details are drawn with a pen: underlines that fade out, a hand-drawn tick, a quotation mark made of ink drops and highlights that look like strokes of a highlighter.
 
-> [!NOTE]
-> Version 0.1 styles the content of notes. The theme still uses Obsidian's default colors and interface; its own color palette and interface come next.
+The colors come from paper and iron gall ink: cream paper with a subtle texture and brown-black text in light mode, dark paper with light ink in dark mode, a sepia accent (an accent chosen in Obsidian's appearance settings still takes precedence) and historic pigments for callouts, highlights and code. The interface is toned to match, down to tooltips and shadows. PDF exports are printed on white paper.
 
 What each version brings is listed in the [changelog](CHANGELOG.md).
 

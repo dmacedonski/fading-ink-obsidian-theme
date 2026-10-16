@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.0] - 2026-10-16
+
+### Added
+
+- Add a color palette of paper and iron gall ink, with a sepia accent and historic pigments for callouts, highlights and code ([`bbd9b76`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/bbd9b76))
+- Add a paper texture of fine grain and an uneven tone to notes in the editor ([`1f04bd9`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/1f04bd9), [`c997630`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/c997630))
+- Add ink and paper tones to the interface: hovers, scrollbars, tooltips, notices, dialog covers and the active item in the sidebars ([`c997630`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/c997630))
+- Add shadows cast in ink instead of black ([`87e307d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/87e307d))
+
 ## [0.1.0] - 2026-10-16
 
 _Initial release._
@@ -28,4 +37,5 @@ _Initial release._
 - Add page breaks and styles that hold up in PDF viewers to the PDF export ([`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec), [`54c02f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/54c02f7))
 - Document installation, development and releases in the README ([`f28262d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f28262d))
 
+[0.2.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.2.0
 [0.1.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.1.0

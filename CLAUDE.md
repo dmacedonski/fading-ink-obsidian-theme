@@ -5,7 +5,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 ## Working with the user
 
 - Talk to the user in Polish. Code, comments, commit messages, README and CHANGELOG are in English.
-- The user commits and pushes. Commit only when asked, on the current branch (`develop`), with the user's message style: short past tense, e.g. "Added tags style".
+- The user commits and pushes. Commit only when asked, on whatever branch is checked out (`develop`, or a `release/*` branch during a release), with the user's message style: short past tense, e.g. "Added tags style".
 - Downloading anything (fonts, packages) needs explicit permission first: name the file, source and size.
 - For design choices, propose variants with a recommendation and let the user pick. Don't force hacky solutions; say when something can't be done cleanly.
 - Keep lint rules on, don't disable or work around them with comments.

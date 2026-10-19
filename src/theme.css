@@ -108,16 +108,21 @@ body {
   --blockquote-border-thickness: 1.5px;
   --blockquote-color: var(--text-muted);
 
-  /* Tags */
+  /* Tags, strips of translucent tape written on in ink */
 
-  --tag-radius: var(--radius-s);
-  --tag-border-width: var(--border-width);
-  --tag-border-color: color-mix(
-    in oklch,
-    var(--interactive-accent) 45%,
+  --tag-background: color-mix(
+    in srgb,
+    var(--interactive-accent) 22%,
     transparent
   );
-  --tag-border-color-hover: var(--tag-border-color);
+  --tag-background-hover: color-mix(
+    in srgb,
+    var(--interactive-accent) 32%,
+    transparent
+  );
+  --tag-color: var(--text-normal);
+  --tag-color-hover: var(--text-normal);
+  --tag-radius: 0;
 
   /* Paper texture of the notes: fine grain and an uneven tone (the layers
      are set with the palette) */
@@ -811,39 +816,45 @@ input.task-list-item-checkbox:checked::after {
   }
 }
 
-/* Tags look like paper labels: one corner is rounded off (the others get
-   the small radius from the body variables) and a string hole is punched
-   next to it. Live Preview splits the tag into the "#" and the name, the
-   corner and the hole go in the "#" */
+/* Tags are strips of washi tape torn off at both ends (the colors are set
+   with the body variables). clip-path tears the ends along points on the
+   left edge, from the bottom up, and on the right edge, from the top down.
+   Live Preview splits the tag into the "#" and the name, so the "#" gets
+   only the torn start and the name only the torn end. Where they meet, the
+   straight cut runs a pixel outside, or its smoothed edge would show as a
+   seam. Chrome clips a tag broken across lines to its first line, so
+   tags don't break */
 a.tag,
+.cm-hashtag {
+  --tag-tape-left-torn:
+    0.16em 100%, 0.02em 89%, 0.2em 77%, 0.05em 64%, 0.22em 51%, 0% 39%,
+    0.15em 26%, 0.03em 13%, 0.18em 0%;
+  --tag-tape-right-torn:
+    calc(100% - 0.08em) 0%, calc(100% - 0.21em) 12%, calc(100% - 0.03em) 25%,
+    calc(100% - 0.17em) 38%, 100% 50%, calc(100% - 0.2em) 62%,
+    calc(100% - 0.05em) 75%, calc(100% - 0.18em) 88%, calc(100% - 0.02em) 100%;
+  --tag-tape-left: var(--tag-tape-left-torn);
+  --tag-tape-right: var(--tag-tape-right-torn);
+
+  white-space: nowrap;
+  clip-path: polygon(var(--tag-tape-right), var(--tag-tape-left));
+}
+
 .cm-hashtag.cm-hashtag-begin {
-  --tag-hole-position: left 0.7em top 0.7em;
-  --tag-hole-radius: 0.2em;
-  --tag-hole-rim: calc(var(--tag-hole-radius) + var(--tag-border-width));
-
-  padding-inline-start: 1.35em;
-  border-start-start-radius: 1em;
-
-  /* The mask punches the hole, the background draws its rim. Half-pixel
-     transitions smooth the edges of such a small circle. Masks are
-     positioned from the border box, the background has to be too, or the
-     rim would be shifted by the border width */
-  background-image: radial-gradient(
-    circle at var(--tag-hole-position),
-    transparent var(--tag-hole-radius),
-    var(--tag-border-color) calc(var(--tag-hole-radius) + 0.5px),
-    var(--tag-border-color) var(--tag-hole-rim),
-    transparent calc(var(--tag-hole-rim) + 0.5px)
-  );
-  background-origin: border-box;
-  mask: radial-gradient(
-    circle at var(--tag-hole-position),
-    transparent var(--tag-hole-radius),
-    #000 calc(var(--tag-hole-radius) + 0.5px)
-  );
+  --tag-tape-right: calc(100% + 1px) 0%, calc(100% + 1px) 100%;
 
   &:dir(rtl) {
-    --tag-hole-position: right 0.7em top 0.7em;
+    --tag-tape-left: -1px 100%, -1px 0%;
+    --tag-tape-right: var(--tag-tape-right-torn);
+  }
+}
+
+.cm-hashtag.cm-hashtag-end {
+  --tag-tape-left: -1px 100%, -1px 0%;
+
+  &:dir(rtl) {
+    --tag-tape-left: var(--tag-tape-left-torn);
+    --tag-tape-right: calc(100% + 1px) 0%, calc(100% + 1px) 100%;
   }
 }
 
@@ -1031,32 +1042,6 @@ a.tag,
 
 .print .callout-content {
   --callout-backdrop: var(--fade-into);
-}
-
-/* Some PDF viewers (GNOME) can't draw masks, so the tag hole isn't punched
-   but painted in the background color, inside its rim. For the same reason
-   as the fading lines, the tag colors are mixed with the background instead
-   of being translucent */
-.print .markdown-rendered a.tag {
-  --tag-background: color-mix(
-    in srgb,
-    var(--interactive-accent) 10%,
-    var(--fade-into)
-  );
-  --tag-border-color: color-mix(
-    in srgb,
-    var(--interactive-accent) 45%,
-    var(--fade-into)
-  );
-
-  mask: none;
-  background-image: radial-gradient(
-    circle at var(--tag-hole-position),
-    var(--fade-into) var(--tag-hole-radius),
-    var(--tag-border-color) calc(var(--tag-hole-radius) + 0.5px),
-    var(--tag-border-color) var(--tag-hole-rim),
-    var(--tag-background) calc(var(--tag-hole-rim) + 0.5px)
-  );
 }
 
 /* The export leaves out Obsidian's bullets (.list-bullet) and falls back to

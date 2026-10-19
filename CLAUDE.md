@@ -18,7 +18,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - `scripts/build.mjs`: embeds every relative `url()` as a data URL, converting TTF/OTF to WOFF2 with `scripts/woff2.mjs` (Brotli from Node, tables stored unchanged).
 - `scripts/release-notes.mjs`: prints a version's CHANGELOG entry for the GitHub release.
 - `npm run build`, `npm run dev` (watch), `npm run lint` (stylelint with stylelint-config-obsidianmd).
-- Lint baseline: 2 errors for `.HyperMD-*` classes (kebab-case rule, unavoidable for Live Preview) and 9 warnings, all false positives (`clip-path`, `text-decoration-*`, `break-*` "partially supported", one `!important` that overrides Obsidian's own). Anything beyond that is new.
+- Lint baseline: 2 errors for `.HyperMD-*` classes (kebab-case rule, unavoidable for Live Preview) and 10 warnings, all false positives (`clip-path`, `text-decoration-*`, `break-*` "partially supported", one `!important` that overrides Obsidian's own). Anything beyond that is new.
 
 ## CSS conventions
 
@@ -36,6 +36,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - Masks are positioned from the border box, backgrounds from the padding box.
 - Live Preview splits formatted text into separate token spans (e.g. a highlight with bold inside), so per-element decorations show joins there.
 - Text direction is set per block: `dir="auto"` on headings in reading view, a `dir` attribute on every Live Preview line, so one note can mix directions. Obsidian sets `margin: 0 !important` on Live Preview lines (`.cm-content > *`); to place a narrowed block on its own start side use `justify-self: self-start` (block layout, Chromium 130+).
+- `clip-path` on an inline element that breaks across lines clips it to its first line (tags get `white-space: nowrap`), and a clip edge exactly on the box edge is smoothed, which shows as a seam between adjacent spans (run straight cuts a pixel outside).
 - Obsidian's own checkbox tick is a mask on `::after`, reset it (`mask: none`) when drawing another shape.
 - PDF export (`body.theme-light > div.print > div.markdown-preview-view.markdown-rendered`, every block wrapped in a `div`, `hr` not wrapped): no `.list-bullet` (the theme draws bullets on `li::before`), callouts are expanded, no `is-unresolved` on links.
 - PDF viewers: gradients fading into transparency turn gray/black (GNOME, ONLYOFFICE), so fading lines use `var(--fade-into, transparent)` and the export sets `--fade-into` to the background; masks don't render in GNOME (use `clip-path: shape()` or paint instead); "darken" blending turns callouts gray in ONLYOFFICE.

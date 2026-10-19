@@ -108,13 +108,22 @@ body {
   --blockquote-border-thickness: 1.5px;
   --blockquote-color: var(--text-muted);
 
-  /* Tags, strips of translucent tape written on in ink */
+  /* Washi tape for tags and embedded notes: a translucent strip whose torn
+     ends are points for clip-path, along the left edge from the bottom up and
+     along the right edge from the top down */
 
-  --tag-background: color-mix(
-    in srgb,
-    var(--interactive-accent) 22%,
-    transparent
-  );
+  --tape-color: color-mix(in srgb, var(--interactive-accent) 22%, transparent);
+  --tape-torn-left:
+    0.16em 100%, 0.02em 89%, 0.2em 77%, 0.05em 64%, 0.22em 51%, 0% 39%,
+    0.15em 26%, 0.03em 13%, 0.18em 0%;
+  --tape-torn-right:
+    calc(100% - 0.08em) 0%, calc(100% - 0.21em) 12%, calc(100% - 0.03em) 25%,
+    calc(100% - 0.17em) 38%, 100% 50%, calc(100% - 0.2em) 62%,
+    calc(100% - 0.05em) 75%, calc(100% - 0.18em) 88%, calc(100% - 0.02em) 100%;
+
+  /* Tags, strips of tape written on in ink */
+
+  --tag-background: var(--tape-color);
   --tag-background-hover: color-mix(
     in srgb,
     var(--interactive-accent) 32%,
@@ -614,21 +623,64 @@ input.task-list-item-checkbox:checked::after {
   }
 }
 
-/* Embedded notes look like clippings from another page: a dashed border all
-   around instead of the accent bar. The variables are set on the embed
-   rather than the body, so the padding beats Obsidian's right-to-left
-   variant and the embeds in canvas cards and hover popovers stay as they
-   are */
+/* Embedded notes are clippings taped into the note: a sheet of slightly
+   different paper with a soft shadow, held at the top by a strip of the same
+   tape as tags. The paper is drawn under the content (the embed isolates it
+   from the note behind). Live Preview contains the paint of embeds and
+   doesn't allow margins on them, so the paper leaves room inside the embed
+   for the upper half of the tape and for its shadow. The variables are set
+   on the embed rather than the body, so the padding beats Obsidian's
+   right-to-left variant and the embeds in canvas cards and hover popovers
+   stay as they are */
 .markdown-rendered .markdown-embed,
 .markdown-source-view.mod-cm6 .markdown-embed {
-  --embed-border-start: var(--border-width) dashed
-    var(--background-modifier-border);
-  --embed-border-end: var(--embed-border-start);
-  --embed-border-top: var(--embed-border-start);
-  --embed-border-bottom: var(--embed-border-start);
-  --embed-padding: var(--size-4-3) var(--size-4-5);
+  --embed-border-start: none;
+  --embed-border-end: none;
+  --embed-border-top: none;
+  --embed-border-bottom: none;
+  --embed-padding: var(--size-4-3) var(--size-4-4);
+  --embed-tape-height: 1.2em;
+  --embed-paper-top: calc(var(--embed-tape-height) / 2 + 0.1em);
+  --embed-paper-margin: 6px;
 
-  border-radius: var(--radius-m);
+  isolation: isolate;
+  padding: var(--embed-paper-top) var(--embed-paper-margin)
+    var(--embed-paper-margin);
+
+  /* Obsidian's buttons sit in the top corner of the embed */
+  & > :is(.markdown-embed-link, .embed-actions) {
+    top: calc(var(--embed-paper-top) + var(--size-2-2));
+    inset-inline-end: calc(var(--embed-paper-margin) + var(--size-2-2));
+  }
+}
+
+.markdown-rendered .markdown-embed::before,
+.markdown-source-view.mod-cm6 .markdown-embed::before {
+  content: '';
+  position: absolute;
+  inset: var(--embed-paper-top) var(--embed-paper-margin)
+    var(--embed-paper-margin);
+  z-index: -1;
+  border-radius: 2px;
+  background-color: var(--background-primary-alt);
+  background-image: var(--paper-grain);
+  box-shadow:
+    0 1px 2px rgb(var(--shadow-rgb) / 14%),
+    0 2px 4px rgb(var(--shadow-rgb) / 8%);
+}
+
+.markdown-rendered .markdown-embed::after,
+.markdown-source-view.mod-cm6 .markdown-embed::after {
+  content: '';
+  position: absolute;
+  top: 0.1em;
+  inset-inline: 0;
+  width: 5em;
+  height: var(--embed-tape-height);
+  margin-inline: auto;
+  background-color: var(--tape-color);
+  clip-path: polygon(var(--tape-torn-right), var(--tape-torn-left));
+  rotate: -2deg;
 }
 
 /* Obsidian rounds embedded bases with --bases-embed-radius, which it never
@@ -816,25 +868,16 @@ input.task-list-item-checkbox:checked::after {
   }
 }
 
-/* Tags are strips of washi tape torn off at both ends (the colors are set
-   with the body variables). clip-path tears the ends along points on the
-   left edge, from the bottom up, and on the right edge, from the top down.
-   Live Preview splits the tag into the "#" and the name, so the "#" gets
-   only the torn start and the name only the torn end. Where they meet, the
-   straight cut runs a pixel outside, or its smoothed edge would show as a
-   seam. Chrome clips a tag broken across lines to its first line, so
-   tags don't break */
+/* Tags are strips of washi tape torn off at both ends (see the body
+   variables). Live Preview splits the tag into the "#" and the name, so the
+   "#" gets only the torn start and the name only the torn end. Where they
+   meet, the straight cut runs a pixel outside, or its smoothed edge would
+   show as a seam. Chrome clips a tag broken across lines to its first line,
+   so tags don't break */
 a.tag,
 .cm-hashtag {
-  --tag-tape-left-torn:
-    0.16em 100%, 0.02em 89%, 0.2em 77%, 0.05em 64%, 0.22em 51%, 0% 39%,
-    0.15em 26%, 0.03em 13%, 0.18em 0%;
-  --tag-tape-right-torn:
-    calc(100% - 0.08em) 0%, calc(100% - 0.21em) 12%, calc(100% - 0.03em) 25%,
-    calc(100% - 0.17em) 38%, 100% 50%, calc(100% - 0.2em) 62%,
-    calc(100% - 0.05em) 75%, calc(100% - 0.18em) 88%, calc(100% - 0.02em) 100%;
-  --tag-tape-left: var(--tag-tape-left-torn);
-  --tag-tape-right: var(--tag-tape-right-torn);
+  --tag-tape-left: var(--tape-torn-left);
+  --tag-tape-right: var(--tape-torn-right);
 
   white-space: nowrap;
   clip-path: polygon(var(--tag-tape-right), var(--tag-tape-left));
@@ -845,7 +888,7 @@ a.tag,
 
   &:dir(rtl) {
     --tag-tape-left: -1px 100%, -1px 0%;
-    --tag-tape-right: var(--tag-tape-right-torn);
+    --tag-tape-right: var(--tape-torn-right);
   }
 }
 
@@ -853,7 +896,7 @@ a.tag,
   --tag-tape-left: -1px 100%, -1px 0%;
 
   &:dir(rtl) {
-    --tag-tape-left: var(--tag-tape-left-torn);
+    --tag-tape-left: var(--tape-torn-left);
     --tag-tape-right: calc(100% + 1px) 0%, calc(100% + 1px) 100%;
   }
 }
@@ -1017,6 +1060,13 @@ a.tag,
    otherwise */
 .print .markdown-rendered .callout-fold {
   display: none;
+}
+
+/* The grain of the clippings' paper goes into the PDF as a detailed image,
+   about a megabyte for each embedded note, so they're printed on plain
+   paper */
+.print .markdown-rendered .markdown-embed::before {
+  background-image: none;
 }
 
 /* In the light theme Obsidian blends callouts with "darken", which some PDF

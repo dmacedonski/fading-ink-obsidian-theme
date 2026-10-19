@@ -151,16 +151,26 @@ body {
      palette) instead of black */
 
   --bases-kanban-card-shadow:
-    0 0 0 1px var(--background-modifier-border), 0 1px 2px 0 rgb(var(--shadow-rgb) / 20%);
+    0 0 0 1px var(--background-modifier-border),
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 20%);
   --bases-kanban-card-shadow-hover:
     0 0 0 1px var(--background-modifier-border-hover),
     0 1.5px 3px 0 rgb(var(--shadow-rgb) / 20%);
-  --embed-actions-shadow: 0 1px 2px 0 rgb(var(--shadow-rgb) / 5%), 0 0 6px 0 rgb(var(--shadow-rgb) / 5%);
-  --pdf-shadow: 0 0 0 1px rgb(var(--shadow-rgb) / 5%), 0 2px 8px rgb(var(--shadow-rgb) / 10%);
+  --embed-actions-shadow:
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 5%),
+    0 0 6px 0 rgb(var(--shadow-rgb) / 5%);
+  --pdf-shadow:
+    0 0 0 1px rgb(var(--shadow-rgb) / 5%),
+    0 2px 8px rgb(var(--shadow-rgb) / 10%);
   --pdf-spread-shadow: 0 0 0 1px rgb(var(--shadow-rgb) / 5%);
-  --pdf-thumbnail-shadow: 0 0 0 1px rgb(var(--shadow-rgb) / 15%), 0 2px 8px rgb(var(--shadow-rgb) / 20%);
-  --slider-thumb-shadow: 0 0 2px 0 rgb(var(--shadow-rgb) / 10%), 0 2px 6px 0 rgb(var(--shadow-rgb) / 10%);
-  --tab-switcher-preview-background-shadow: 0 4px 30px 2px rgb(var(--shadow-rgb) / 20%);
+  --pdf-thumbnail-shadow:
+    0 0 0 1px rgb(var(--shadow-rgb) / 15%),
+    0 2px 8px rgb(var(--shadow-rgb) / 20%);
+  --slider-thumb-shadow:
+    0 0 2px 0 rgb(var(--shadow-rgb) / 10%),
+    0 2px 6px 0 rgb(var(--shadow-rgb) / 10%);
+  --tab-switcher-preview-background-shadow: 0 4px 30px 2px
+    rgb(var(--shadow-rgb) / 20%);
   --tab-stacked-shadow: -8px 0 8px 0 rgb(var(--shadow-rgb) / 5%);
 
   /* Callouts */
@@ -246,19 +256,21 @@ body {
   --shadow-rgb: 48 38 26;
   --background-modifier-box-shadow: rgb(var(--shadow-rgb) / 10%);
   --input-shadow:
-    inset 0 0 0 1px rgb(var(--shadow-rgb) / 12%), 0 1px 2px 0 rgb(var(--shadow-rgb) / 6.5%),
-    0 0 0 0 transparent;
+    inset 0 0 0 1px rgb(var(--shadow-rgb) / 12%),
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 6.5%), 0 0 0 0 transparent;
   --input-shadow-hover:
-    inset 0 0 0 1px rgb(var(--shadow-rgb) / 17%), 0 1px 2px 0 rgb(var(--shadow-rgb) / 10%),
-    0 0 0 0 transparent;
+    inset 0 0 0 1px rgb(var(--shadow-rgb) / 17%),
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 10%), 0 0 0 0 transparent;
   --shadow-xs:
-    0 1px 6px rgb(var(--shadow-rgb) / 1.5%), 0 4px 24px rgb(var(--shadow-rgb) / 6.5%),
-    var(--shadow-edges);
+    0 1px 6px rgb(var(--shadow-rgb) / 1.5%),
+    0 4px 24px rgb(var(--shadow-rgb) / 6.5%), var(--shadow-edges);
   --shadow-s:
-    0 1px 2px rgb(var(--shadow-rgb) / 2.8%), 0 3.4px 6.7px rgb(var(--shadow-rgb) / 4.2%),
+    0 1px 2px rgb(var(--shadow-rgb) / 2.8%),
+    0 3.4px 6.7px rgb(var(--shadow-rgb) / 4.2%),
     0 15px 30px rgb(var(--shadow-rgb) / 7%);
   --shadow-l:
-    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%), 0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
+    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%),
+    0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
     0 15px 30px rgb(var(--shadow-rgb) / 10%);
 
   /* Paper texture: SVG noise in the ink color, darkening the paper by a few
@@ -338,21 +350,27 @@ body {
   --shadow-rgb: 12 9 6;
   --background-modifier-box-shadow: rgb(var(--shadow-rgb) / 30%);
   --input-shadow:
-    inset 0 0.5px 0.5px 0.5px color-mix(in srgb, var(--color-base-100) 9%, transparent),
-    0 2px 4px 0 rgb(var(--shadow-rgb) / 15%), 0 1px 1.5px 0 rgb(var(--shadow-rgb) / 10%),
+    inset 0 0.5px 0.5px 0.5px
+      color-mix(in srgb, var(--color-base-100) 9%, transparent),
+    0 2px 4px 0 rgb(var(--shadow-rgb) / 15%),
+    0 1px 1.5px 0 rgb(var(--shadow-rgb) / 10%),
     0 1px 2px 0 rgb(var(--shadow-rgb) / 20%), 0 0 0 0 transparent;
   --input-shadow-hover:
-    inset 0 0.5px 1px 0.5px color-mix(in srgb, var(--color-base-100) 16%, transparent),
-    0 2px 3px 0 rgb(var(--shadow-rgb) / 30%), 0 1px 1.5px 0 rgb(var(--shadow-rgb) / 20%),
+    inset 0 0.5px 1px 0.5px
+      color-mix(in srgb, var(--color-base-100) 16%, transparent),
+    0 2px 3px 0 rgb(var(--shadow-rgb) / 30%),
+    0 1px 1.5px 0 rgb(var(--shadow-rgb) / 20%),
     0 1px 2px 0 rgb(var(--shadow-rgb) / 40%), 0 0 0 0 transparent;
   --shadow-xs:
-    0 1px 6px rgb(var(--shadow-rgb) / 4.5%), 0 4px 24px rgb(var(--shadow-rgb) / 19.5%),
-    var(--shadow-edges);
+    0 1px 6px rgb(var(--shadow-rgb) / 4.5%),
+    0 4px 24px rgb(var(--shadow-rgb) / 19.5%), var(--shadow-edges);
   --shadow-s:
-    0 1px 2px rgb(var(--shadow-rgb) / 12.1%), 0 3.4px 6.7px rgb(var(--shadow-rgb) / 17.9%),
+    0 1px 2px rgb(var(--shadow-rgb) / 12.1%),
+    0 3.4px 6.7px rgb(var(--shadow-rgb) / 17.9%),
     0 15px 30px rgb(var(--shadow-rgb) / 30%);
   --shadow-l:
-    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%), 0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
+    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%),
+    0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
     0 30px 90px rgb(var(--shadow-rgb) / 20%);
 
   /* Paper texture: SVG noise in the paper color, lightening it by a few

@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.0] - 2026-10-19
+
+### Changed
+
+- Fit the underline of headings and the note title to their text: full ink under its first half, faded out by its end ([`8f40528`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8f40528))
+- Fit the underline of callout titles to their text in the same way ([`340e213`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/340e213))
+- Mark blockquotes with a pen stroke in the margin that thins and fades out, and write them in faded ink, instead of a quotation mark of ink drops ([`6a6e40c`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/6a6e40c))
+- Turn tags into strips of washi tape, torn off at the ends and written on in ink, instead of paper labels; tags no longer break across lines ([`21da7c7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/21da7c7))
+- Turn embedded notes into paper clippings taped into the note instead of a dashed border ([`0dcdcfe`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/0dcdcfe))
+
+### Added
+
+- Document known limitations in the README ([`8f40528`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8f40528), [`340e213`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/340e213))
+
+### Fixed
+
+- Fix the lines under headings and callout titles and above footnotes starting on the left in right-to-left notes ([`8f40528`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8f40528), [`340e213`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/340e213))
+
 ## [0.2.0] - 2026-10-16
 
 ### Added
@@ -37,5 +55,6 @@ _Initial release._
 - Add page breaks and styles that hold up in PDF viewers to the PDF export ([`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec), [`54c02f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/54c02f7))
 - Document installation, development and releases in the README ([`f28262d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f28262d))
 
+[0.3.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.0
 [0.2.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.2.0
 [0.1.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.1.0

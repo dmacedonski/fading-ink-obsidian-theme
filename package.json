@@ -1,6 +1,6 @@
 {
     "name": "fading-ink",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "scripts": {
         "build": "node scripts/build.mjs",
         "dev": "node --watch-path=src --watch-path=fonts scripts/build.mjs",

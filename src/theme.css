@@ -103,39 +103,35 @@ body {
   --checklist-done-decoration: none;
   --checklist-done-color: var(--text-faint);
 
-  /* Blockquotes */
+  /* Blockquotes, someone else's words in faded ink */
 
-  /* Two ink drops (designed on a 46 x 36 grid), cut out with clip-path */
-  --blockquote-mark: shape(
-    from 40.22% 12.5%,
-    curve to 6.52% 66.67% with 20.65% 19.44% / 6.52% 40.28%,
-    curve to 23.91% 88.89% with 6.52% 78.89% / 14.35% 88.89%,
-    curve to 41.3% 66.67% with 33.48% 88.89% / 41.3% 78.89%,
-    curve to 23.91% 44.44% with 41.3% 54.44% / 33.48% 44.44%,
-    curve to 20.87% 44.72% with 22.83% 44.44% / 21.74% 44.44%,
-    curve to 42.61% 17.22% with 23.91% 31.67% / 31.3% 21.67%,
-    close,
-    move to 92.39% 12.5%,
-    curve to 58.7% 66.67% with 72.83% 19.44% / 58.7% 40.28%,
-    curve to 76.09% 88.89% with 58.7% 78.89% / 66.52% 88.89%,
-    curve to 93.48% 66.67% with 85.65% 88.89% / 93.48% 78.89%,
-    curve to 76.09% 44.44% with 93.48% 54.44% / 85.65% 44.44%,
-    curve to 73.04% 44.72% with 75% 44.44% / 73.91% 44.44%,
-    curve to 94.78% 17.22% with 76.09% 31.67% / 83.48% 21.67%,
-    close
-  );
-  --blockquote-mark-color: var(--blockquote-border-color);
+  --blockquote-border-thickness: 1.5px;
+  --blockquote-color: var(--text-muted);
 
-  /* Tags */
+  /* Washi tape for tags and embedded notes: a translucent strip whose torn
+     ends are points for clip-path, along the left edge from the bottom up and
+     along the right edge from the top down */
 
-  --tag-radius: var(--radius-s);
-  --tag-border-width: var(--border-width);
-  --tag-border-color: color-mix(
-    in oklch,
-    var(--interactive-accent) 45%,
+  --tape-color: color-mix(in srgb, var(--interactive-accent) 22%, transparent);
+  --tape-torn-left:
+    0.16em 100%, 0.02em 89%, 0.2em 77%, 0.05em 64%, 0.22em 51%, 0% 39%,
+    0.15em 26%, 0.03em 13%, 0.18em 0%;
+  --tape-torn-right:
+    calc(100% - 0.08em) 0%, calc(100% - 0.21em) 12%, calc(100% - 0.03em) 25%,
+    calc(100% - 0.17em) 38%, 100% 50%, calc(100% - 0.2em) 62%,
+    calc(100% - 0.05em) 75%, calc(100% - 0.18em) 88%, calc(100% - 0.02em) 100%;
+
+  /* Tags, strips of tape written on in ink */
+
+  --tag-background: var(--tape-color);
+  --tag-background-hover: color-mix(
+    in srgb,
+    var(--interactive-accent) 32%,
     transparent
   );
-  --tag-border-color-hover: var(--tag-border-color);
+  --tag-color: var(--text-normal);
+  --tag-color-hover: var(--text-normal);
+  --tag-radius: 0;
 
   /* Paper texture of the notes: fine grain and an uneven tone (the layers
      are set with the palette) */
@@ -155,16 +151,26 @@ body {
      palette) instead of black */
 
   --bases-kanban-card-shadow:
-    0 0 0 1px var(--background-modifier-border), 0 1px 2px 0 rgb(var(--shadow-rgb) / 20%);
+    0 0 0 1px var(--background-modifier-border),
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 20%);
   --bases-kanban-card-shadow-hover:
     0 0 0 1px var(--background-modifier-border-hover),
     0 1.5px 3px 0 rgb(var(--shadow-rgb) / 20%);
-  --embed-actions-shadow: 0 1px 2px 0 rgb(var(--shadow-rgb) / 5%), 0 0 6px 0 rgb(var(--shadow-rgb) / 5%);
-  --pdf-shadow: 0 0 0 1px rgb(var(--shadow-rgb) / 5%), 0 2px 8px rgb(var(--shadow-rgb) / 10%);
+  --embed-actions-shadow:
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 5%),
+    0 0 6px 0 rgb(var(--shadow-rgb) / 5%);
+  --pdf-shadow:
+    0 0 0 1px rgb(var(--shadow-rgb) / 5%),
+    0 2px 8px rgb(var(--shadow-rgb) / 10%);
   --pdf-spread-shadow: 0 0 0 1px rgb(var(--shadow-rgb) / 5%);
-  --pdf-thumbnail-shadow: 0 0 0 1px rgb(var(--shadow-rgb) / 15%), 0 2px 8px rgb(var(--shadow-rgb) / 20%);
-  --slider-thumb-shadow: 0 0 2px 0 rgb(var(--shadow-rgb) / 10%), 0 2px 6px 0 rgb(var(--shadow-rgb) / 10%);
-  --tab-switcher-preview-background-shadow: 0 4px 30px 2px rgb(var(--shadow-rgb) / 20%);
+  --pdf-thumbnail-shadow:
+    0 0 0 1px rgb(var(--shadow-rgb) / 15%),
+    0 2px 8px rgb(var(--shadow-rgb) / 20%);
+  --slider-thumb-shadow:
+    0 0 2px 0 rgb(var(--shadow-rgb) / 10%),
+    0 2px 6px 0 rgb(var(--shadow-rgb) / 10%);
+  --tab-switcher-preview-background-shadow: 0 4px 30px 2px
+    rgb(var(--shadow-rgb) / 20%);
   --tab-stacked-shadow: -8px 0 8px 0 rgb(var(--shadow-rgb) / 5%);
 
   /* Callouts */
@@ -250,19 +256,21 @@ body {
   --shadow-rgb: 48 38 26;
   --background-modifier-box-shadow: rgb(var(--shadow-rgb) / 10%);
   --input-shadow:
-    inset 0 0 0 1px rgb(var(--shadow-rgb) / 12%), 0 1px 2px 0 rgb(var(--shadow-rgb) / 6.5%),
-    0 0 0 0 transparent;
+    inset 0 0 0 1px rgb(var(--shadow-rgb) / 12%),
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 6.5%), 0 0 0 0 transparent;
   --input-shadow-hover:
-    inset 0 0 0 1px rgb(var(--shadow-rgb) / 17%), 0 1px 2px 0 rgb(var(--shadow-rgb) / 10%),
-    0 0 0 0 transparent;
+    inset 0 0 0 1px rgb(var(--shadow-rgb) / 17%),
+    0 1px 2px 0 rgb(var(--shadow-rgb) / 10%), 0 0 0 0 transparent;
   --shadow-xs:
-    0 1px 6px rgb(var(--shadow-rgb) / 1.5%), 0 4px 24px rgb(var(--shadow-rgb) / 6.5%),
-    var(--shadow-edges);
+    0 1px 6px rgb(var(--shadow-rgb) / 1.5%),
+    0 4px 24px rgb(var(--shadow-rgb) / 6.5%), var(--shadow-edges);
   --shadow-s:
-    0 1px 2px rgb(var(--shadow-rgb) / 2.8%), 0 3.4px 6.7px rgb(var(--shadow-rgb) / 4.2%),
+    0 1px 2px rgb(var(--shadow-rgb) / 2.8%),
+    0 3.4px 6.7px rgb(var(--shadow-rgb) / 4.2%),
     0 15px 30px rgb(var(--shadow-rgb) / 7%);
   --shadow-l:
-    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%), 0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
+    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%),
+    0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
     0 15px 30px rgb(var(--shadow-rgb) / 10%);
 
   /* Paper texture: SVG noise in the ink color, darkening the paper by a few
@@ -342,21 +350,27 @@ body {
   --shadow-rgb: 12 9 6;
   --background-modifier-box-shadow: rgb(var(--shadow-rgb) / 30%);
   --input-shadow:
-    inset 0 0.5px 0.5px 0.5px color-mix(in srgb, var(--color-base-100) 9%, transparent),
-    0 2px 4px 0 rgb(var(--shadow-rgb) / 15%), 0 1px 1.5px 0 rgb(var(--shadow-rgb) / 10%),
+    inset 0 0.5px 0.5px 0.5px
+      color-mix(in srgb, var(--color-base-100) 9%, transparent),
+    0 2px 4px 0 rgb(var(--shadow-rgb) / 15%),
+    0 1px 1.5px 0 rgb(var(--shadow-rgb) / 10%),
     0 1px 2px 0 rgb(var(--shadow-rgb) / 20%), 0 0 0 0 transparent;
   --input-shadow-hover:
-    inset 0 0.5px 1px 0.5px color-mix(in srgb, var(--color-base-100) 16%, transparent),
-    0 2px 3px 0 rgb(var(--shadow-rgb) / 30%), 0 1px 1.5px 0 rgb(var(--shadow-rgb) / 20%),
+    inset 0 0.5px 1px 0.5px
+      color-mix(in srgb, var(--color-base-100) 16%, transparent),
+    0 2px 3px 0 rgb(var(--shadow-rgb) / 30%),
+    0 1px 1.5px 0 rgb(var(--shadow-rgb) / 20%),
     0 1px 2px 0 rgb(var(--shadow-rgb) / 40%), 0 0 0 0 transparent;
   --shadow-xs:
-    0 1px 6px rgb(var(--shadow-rgb) / 4.5%), 0 4px 24px rgb(var(--shadow-rgb) / 19.5%),
-    var(--shadow-edges);
+    0 1px 6px rgb(var(--shadow-rgb) / 4.5%),
+    0 4px 24px rgb(var(--shadow-rgb) / 19.5%), var(--shadow-edges);
   --shadow-s:
-    0 1px 2px rgb(var(--shadow-rgb) / 12.1%), 0 3.4px 6.7px rgb(var(--shadow-rgb) / 17.9%),
+    0 1px 2px rgb(var(--shadow-rgb) / 12.1%),
+    0 3.4px 6.7px rgb(var(--shadow-rgb) / 17.9%),
     0 15px 30px rgb(var(--shadow-rgb) / 30%);
   --shadow-l:
-    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%), 0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
+    0 1.8px 7.3px rgb(var(--shadow-rgb) / 7.1%),
+    0 6.3px 24.7px rgb(var(--shadow-rgb) / 11.2%),
     0 30px 90px rgb(var(--shadow-rgb) / 20%);
 
   /* Paper texture: SVG noise in the paper color, lightening it by a few
@@ -391,20 +405,32 @@ body {
   background-attachment: local;
 }
 
-/* Header underline, the note title above the content gets it as well.
-   Like the other fading lines, it fades into --fade-into, which the PDF
-   export sets to the background (see the end of the file) */
+/* Header underline, the note title above the content gets it as well. The
+   header is only as wide as its text, so the line follows the text: full ink
+   under its first half, faded out by its end. A wrapped header fills the
+   column, and the line with it. justify-self keeps a header on its own start
+   side when its direction differs from the note's, Live Preview doesn't allow
+   margins on lines. Like the other fading lines, it fades into --fade-into,
+   which the PDF export sets to the background (see the end of the file) */
 .markdown-rendered :is(h1, h2, h3, h4, h5, h6),
 .markdown-source-view.mod-cm6 .HyperMD-header,
 .inline-title {
+  --header-line-direction: to right;
+
+  width: fit-content;
+  justify-self: self-start;
   background-image: linear-gradient(
-    to right,
-    var(--text-accent),
-    var(--fade-into, transparent) 50%
+    var(--header-line-direction),
+    var(--text-accent) 50%,
+    var(--fade-into, transparent)
   );
   background-size: 100% var(--border-width);
   background-position: left bottom 0.2em;
   background-repeat: no-repeat;
+
+  &:dir(rtl) {
+    --header-line-direction: to left;
+  }
 }
 
 /* Italic text uses the handwritten font as well. Dancing Script has no
@@ -554,49 +580,33 @@ input.task-list-item-checkbox:checked::after {
   );
 }
 
-/* Blockquotes: a quotation mark made of two ink drops hangs at the top of the
-   border, which starts below it and fades out downwards. Only the outermost
-   quote gets it */
-.markdown-rendered blockquote:not(blockquote blockquote) {
+/* Blockquotes are marked like a passage in a book: a pen stroke down the
+   margin, which thins out towards its end as the nib lifts and fades like the
+   other lines. The stroke is drawn over the border, which keeps its place
+   (its color can't be re-scoped, the stroke takes it). Live Preview draws the
+   border separately for every line, so it stays a plain line there */
+.markdown-rendered blockquote {
   position: relative;
-  border-image: linear-gradient(
-      to bottom,
-      var(--fade-into, transparent) 2.2em,
-      var(--blockquote-border-color) 2.2em,
-      var(--fade-into, transparent)
-    )
-    1;
+  border-inline-start-color: transparent;
 }
 
-.markdown-rendered blockquote:not(blockquote blockquote)::before {
+.markdown-rendered blockquote::before {
   content: '';
   position: absolute;
-  top: 0.15em;
-  inset-inline-start: calc(var(--blockquote-border-thickness) / -2 - 0.625em);
-  width: 1.25em;
-  aspect-ratio: 46 / 36;
-  background-color: var(--blockquote-mark-color);
-  clip-path: var(--blockquote-mark);
-}
-
-/* Live Preview draws the border separately for every line, so it can't fade.
-   The mark goes on the first quote line (callouts being edited are quote
-   lines too), whose own piece of the border is hidden */
-.markdown-source-view.mod-cm6.is-live-preview
-  .cm-line:not(.HyperMD-quote)
-  + .HyperMD-quote:not(.HyperMD-callout) {
-  --blockquote-border-color: transparent;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0.15em;
-    inset-inline-start: calc(var(--blockquote-border-thickness) / 2 - 0.625em);
-    width: 1.25em;
-    aspect-ratio: 46 / 36;
-    background-color: var(--blockquote-mark-color);
-    clip-path: var(--blockquote-mark);
-  }
+  inset-block: 0;
+  inset-inline-start: calc(var(--blockquote-border-thickness) * -1);
+  width: var(--blockquote-border-thickness);
+  background-image: linear-gradient(
+    to bottom,
+    var(--blockquote-border-color) 40%,
+    var(--fade-into, transparent)
+  );
+  clip-path: shape(
+    from 0% 0%,
+    line to 100% 0%,
+    curve to 50% 100% with 100% 55%,
+    curve to 0% 0% with 0% 55%
+  );
 }
 
 /* Callout titles in the handwritten font, enlarged like italic text (see the
@@ -605,34 +615,90 @@ input.task-list-item-checkbox:checked::after {
   font-family: 'Dancing Script', cursive;
 }
 
-/* Callout titles are underlined like headers, in the callout color. The line
-   is drawn on top of the content, which Obsidian adds only to callouts with
-   more than a title and hides when collapsing, so the line goes with it */
-.callout-content {
+/* Callout titles are underlined like headers, in the callout color and along
+   the title text, which is as wide as the text already. Only callouts with
+   content under the title get the line: Obsidian adds the content only to
+   callouts with more than a title, and hides it when collapsing. The PDF
+   export shows the content of collapsed callouts but keeps their class. The
+   title takes its direction from its own text, the line starts on its side */
+.callout:not(.is-collapsed)
+  > .callout-title:not(:last-child)
+  > .callout-title-inner,
+.print .callout > .callout-title:not(:last-child) > .callout-title-inner {
+  --callout-line-direction: to right;
+
   background-image: linear-gradient(
-    to right,
-    var(--callout-color),
-    var(--fade-into, transparent) 50%
+    var(--callout-line-direction),
+    var(--callout-color) 50%,
+    var(--fade-into, transparent)
   );
   background-size: 100% var(--border-width);
+  background-position: left bottom;
   background-repeat: no-repeat;
+
+  &:dir(rtl) {
+    --callout-line-direction: to left;
+  }
 }
 
-/* Embedded notes look like clippings from another page: a dashed border all
-   around instead of the accent bar. The variables are set on the embed
-   rather than the body, so the padding beats Obsidian's right-to-left
-   variant and the embeds in canvas cards and hover popovers stay as they
-   are */
+/* Embedded notes are clippings taped into the note: a sheet of slightly
+   different paper with a soft shadow, held at the top by a strip of the same
+   tape as tags. The paper is drawn under the content (the embed isolates it
+   from the note behind). Live Preview contains the paint of embeds and
+   doesn't allow margins on them, so the paper leaves room inside the embed
+   for the upper half of the tape and for its shadow. The variables are set
+   on the embed rather than the body, so the padding beats Obsidian's
+   right-to-left variant and the embeds in canvas cards and hover popovers
+   stay as they are */
 .markdown-rendered .markdown-embed,
 .markdown-source-view.mod-cm6 .markdown-embed {
-  --embed-border-start: var(--border-width) dashed
-    var(--background-modifier-border);
-  --embed-border-end: var(--embed-border-start);
-  --embed-border-top: var(--embed-border-start);
-  --embed-border-bottom: var(--embed-border-start);
-  --embed-padding: var(--size-4-3) var(--size-4-5);
+  --embed-border-start: none;
+  --embed-border-end: none;
+  --embed-border-top: none;
+  --embed-border-bottom: none;
+  --embed-padding: var(--size-4-3) var(--size-4-4);
+  --embed-tape-height: 1.2em;
+  --embed-paper-top: calc(var(--embed-tape-height) / 2 + 0.1em);
+  --embed-paper-margin: 6px;
 
-  border-radius: var(--radius-m);
+  isolation: isolate;
+  padding: var(--embed-paper-top) var(--embed-paper-margin)
+    var(--embed-paper-margin);
+
+  /* Obsidian's buttons sit in the top corner of the embed */
+  & > :is(.markdown-embed-link, .embed-actions) {
+    top: calc(var(--embed-paper-top) + var(--size-2-2));
+    inset-inline-end: calc(var(--embed-paper-margin) + var(--size-2-2));
+  }
+}
+
+.markdown-rendered .markdown-embed::before,
+.markdown-source-view.mod-cm6 .markdown-embed::before {
+  content: '';
+  position: absolute;
+  inset: var(--embed-paper-top) var(--embed-paper-margin)
+    var(--embed-paper-margin);
+  z-index: -1;
+  border-radius: 2px;
+  background-color: var(--background-primary-alt);
+  background-image: var(--paper-grain);
+  box-shadow:
+    0 1px 2px rgb(var(--shadow-rgb) / 14%),
+    0 2px 4px rgb(var(--shadow-rgb) / 8%);
+}
+
+.markdown-rendered .markdown-embed::after,
+.markdown-source-view.mod-cm6 .markdown-embed::after {
+  content: '';
+  position: absolute;
+  top: 0.1em;
+  inset-inline: 0;
+  width: 5em;
+  height: var(--embed-tape-height);
+  margin-inline: auto;
+  background-color: var(--tape-color);
+  clip-path: polygon(var(--tape-torn-right), var(--tape-torn-left));
+  rotate: -2deg;
 }
 
 /* Obsidian rounds embedded bases with --bases-embed-radius, which it never
@@ -820,39 +886,36 @@ input.task-list-item-checkbox:checked::after {
   }
 }
 
-/* Tags look like paper labels: one corner is rounded off (the others get
-   the small radius from the body variables) and a string hole is punched
-   next to it. Live Preview splits the tag into the "#" and the name, the
-   corner and the hole go in the "#" */
+/* Tags are strips of washi tape torn off at both ends (see the body
+   variables). Live Preview splits the tag into the "#" and the name, so the
+   "#" gets only the torn start and the name only the torn end. Where they
+   meet, the straight cut runs a pixel outside, or its smoothed edge would
+   show as a seam. Chrome clips a tag broken across lines to its first line,
+   so tags don't break */
 a.tag,
+.cm-hashtag {
+  --tag-tape-left: var(--tape-torn-left);
+  --tag-tape-right: var(--tape-torn-right);
+
+  white-space: nowrap;
+  clip-path: polygon(var(--tag-tape-right), var(--tag-tape-left));
+}
+
 .cm-hashtag.cm-hashtag-begin {
-  --tag-hole-position: left 0.7em top 0.7em;
-  --tag-hole-radius: 0.2em;
-  --tag-hole-rim: calc(var(--tag-hole-radius) + var(--tag-border-width));
-
-  padding-inline-start: 1.35em;
-  border-start-start-radius: 1em;
-
-  /* The mask punches the hole, the background draws its rim. Half-pixel
-     transitions smooth the edges of such a small circle. Masks are
-     positioned from the border box, the background has to be too, or the
-     rim would be shifted by the border width */
-  background-image: radial-gradient(
-    circle at var(--tag-hole-position),
-    transparent var(--tag-hole-radius),
-    var(--tag-border-color) calc(var(--tag-hole-radius) + 0.5px),
-    var(--tag-border-color) var(--tag-hole-rim),
-    transparent calc(var(--tag-hole-rim) + 0.5px)
-  );
-  background-origin: border-box;
-  mask: radial-gradient(
-    circle at var(--tag-hole-position),
-    transparent var(--tag-hole-radius),
-    #000 calc(var(--tag-hole-radius) + 0.5px)
-  );
+  --tag-tape-right: calc(100% + 1px) 0%, calc(100% + 1px) 100%;
 
   &:dir(rtl) {
-    --tag-hole-position: right 0.7em top 0.7em;
+    --tag-tape-left: -1px 100%, -1px 0%;
+    --tag-tape-right: var(--tape-torn-right);
+  }
+}
+
+.cm-hashtag.cm-hashtag-end {
+  --tag-tape-left: -1px 100%, -1px 0%;
+
+  &:dir(rtl) {
+    --tag-tape-left: var(--tape-torn-left);
+    --tag-tape-right: calc(100% + 1px) 0%, calc(100% + 1px) 100%;
   }
 }
 
@@ -866,15 +929,24 @@ a.tag,
 }
 
 .markdown-rendered .footnotes {
+  --footnotes-line-direction: to right;
+
   margin-top: var(--size-4-8);
   padding-top: var(--size-4-4);
   background-image: linear-gradient(
-    to right,
+    var(--footnotes-line-direction),
     var(--text-accent),
     var(--fade-into, transparent)
   );
   background-size: 33% var(--border-width);
+  background-position: left top;
   background-repeat: no-repeat;
+
+  &:dir(rtl) {
+    --footnotes-line-direction: to left;
+
+    background-position: right top;
+  }
 }
 
 /* Footnote text in a faded ink, so it doesn't compete with the main text */
@@ -1008,6 +1080,13 @@ a.tag,
   display: none;
 }
 
+/* The grain of the clippings' paper goes into the PDF as a detailed image,
+   about a megabyte for each embedded note, so they're printed on plain
+   paper */
+.print .markdown-rendered .markdown-embed::before {
+  background-image: none;
+}
+
 /* In the light theme Obsidian blends callouts with "darken", which some PDF
    viewers (ONLYOFFICE) can't draw and show them all gray. On the white page
    it looks the same as no blending.
@@ -1031,32 +1110,6 @@ a.tag,
 
 .print .callout-content {
   --callout-backdrop: var(--fade-into);
-}
-
-/* Some PDF viewers (GNOME) can't draw masks, so the tag hole isn't punched
-   but painted in the background color, inside its rim. For the same reason
-   as the fading lines, the tag colors are mixed with the background instead
-   of being translucent */
-.print .markdown-rendered a.tag {
-  --tag-background: color-mix(
-    in srgb,
-    var(--interactive-accent) 10%,
-    var(--fade-into)
-  );
-  --tag-border-color: color-mix(
-    in srgb,
-    var(--interactive-accent) 45%,
-    var(--fade-into)
-  );
-
-  mask: none;
-  background-image: radial-gradient(
-    circle at var(--tag-hole-position),
-    var(--fade-into) var(--tag-hole-radius),
-    var(--tag-border-color) calc(var(--tag-hole-radius) + 0.5px),
-    var(--tag-border-color) var(--tag-hole-rim),
-    var(--tag-background) calc(var(--tag-hole-rim) + 0.5px)
-  );
 }
 
 /* The export leaves out Obsidian's bullets (.list-bullet) and falls back to

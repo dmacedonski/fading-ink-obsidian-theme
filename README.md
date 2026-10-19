@@ -1,6 +1,6 @@
 # Fading Ink
 
-An [Obsidian](https://obsidian.md) theme inspired by handwritten notes on paper. Headings and italics are set in a handwritten font, the text in a calm book serif, and the details are drawn with a pen: underlines that fade out, a hand-drawn tick, a quotation mark made of ink drops and highlights that look like strokes of a highlighter.
+An [Obsidian](https://obsidian.md) theme inspired by handwritten notes on paper. Headings and italics are set in a handwritten font, the text in a calm book serif, and the details are drawn with a pen: underlines that fade out, a hand-drawn tick, quotes in faded ink with a pen stroke in the margin, and highlights that look like strokes of a highlighter. Tags are strips of washi tape, and embedded notes are clippings taped into the page.
 
 The colors come from paper and iron gall ink: cream paper with a subtle texture and brown-black text in light mode, dark paper with light ink in dark mode, a sepia accent (an accent chosen in Obsidian's appearance settings still takes precedence) and historic pigments for callouts, highlights and code. The interface is toned to match, down to tooltips and shadows. PDF exports are printed on white paper.
 
@@ -17,6 +17,14 @@ Until the theme is available in Obsidian's community themes:
 The theme sets the text in Lora, which can still be replaced in **Settings → Appearance → Font**.
 
 Requires Obsidian 1.14.4 or newer.
+
+## Known limitations
+
+- List bullets have a style for each of the first three levels. In reading view the deeper levels keep the style of the third, in Live Preview the styles start over from the fourth level.
+- In reading view, the strikethrough line of a sentence with italics isn't straight: it runs higher over the italic words, which are set in the handwritten font.
+- Highlights look like strokes of a highlighter in reading view only. Live Preview splits formatted text into separate pieces, so highlights stay flat there.
+- The line under a heading or a callout title follows its text, but a heading that wraps onto more lines is underlined across the whole column, and a callout title across the whole callout.
+- The note title above the content is only as wide as its text, so clicking to edit it works on the text, not anywhere in its row.
 
 ## Development
 

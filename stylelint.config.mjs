@@ -19,5 +19,26 @@ export default {
           `Expected class selector "${selector}" to be kebab-case (or one of CodeMirror's HyperMD- classes)`,
       },
     ],
+
+    // Obsidian's browser target and ignored features, plus three feature
+    // families Chrome supports only partially in every version, though fully
+    // for the values the theme uses: text-decoration (it lacks some
+    // text-decoration-skip values), css-clip-path (it lacks shapes from
+    // external SVG files, which themes can't load anyway) and multicolumn (it
+    // lacks column breaks, the PDF export uses page breaks)
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        severity: "warning",
+        browsers: ["electron >= 43"],
+        ignore: [
+          "css-nesting",
+          "css-cascade-layers",
+          "text-decoration",
+          "css-clip-path",
+          "multicolumn",
+        ],
+      },
+    ],
   },
 };

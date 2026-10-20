@@ -17,8 +17,8 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - `fonts/`: Dancing Script (headings, note title, italics, list numbers) and Lora (text), OFL with Reserved Font Names: format conversion is fine, no subsetting or other changes. License texts: `fonts/OFL.txt`, `fonts/OFL-Lora.txt`.
 - `scripts/build.mjs`: embeds every relative `url()` as a data URL, converting TTF/OTF to WOFF2 with `scripts/woff2.mjs` (Brotli from Node, tables stored unchanged).
 - `scripts/release-notes.mjs`: prints a version's CHANGELOG entry for the GitHub release.
-- `npm run build`, `npm run dev` (watch), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule).
-- Lint baseline: no errors and 11 warnings, all false positives (`clip-path`, `text-decoration-*`, `break-*` "partially supported", one `!important` that overrides Obsidian's own). Anything beyond that is new.
+- `npm run build`, `npm run dev` (watch), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule and ignores three feature families Chrome supports only partially, in ways the theme doesn't depend on).
+- Lint baseline: no errors and 1 warning, the `!important` that overrides Obsidian's own on the Live Preview table widget. Anything beyond that is new.
 
 ## CSS conventions
 

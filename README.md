@@ -38,6 +38,8 @@ npm run lint    # check src/ with stylelint
 npm run format  # format the sources with Prettier
 ```
 
+The Node.js version is in `.nvmrc`. Every push to `develop` and `main` is checked on GitHub: lint, formatting and build.
+
 To work on the theme, link the repository folder into your vault's themes folder as `Fading Ink`.
 
 ### Releases
@@ -53,7 +55,7 @@ git flow release finish -m "0.2.0" 0.2.0
 git push origin main develop 0.2.0
 ```
 
-Pushing the tag builds the theme and creates a draft release on GitHub with `theme.css` and `manifest.json`.
+Pushing the tag checks that it matches the version in `manifest.json`, runs the same checks, builds the theme and creates a draft release on GitHub with `theme.css` and `manifest.json`.
 
 ## Licenses
 

@@ -17,7 +17,8 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - `fonts/`: Dancing Script (headings, note title, italics, list numbers) and Lora (text), OFL with Reserved Font Names: format conversion is fine, no subsetting or other changes. License texts: `fonts/OFL.txt`, `fonts/OFL-Lora.txt`.
 - `scripts/build.mjs`: embeds every relative `url()` as a data URL, converting TTF/OTF to WOFF2 with `scripts/woff2.mjs` (Brotli from Node, tables stored unchanged).
 - `scripts/release-notes.mjs`: prints a version's CHANGELOG entry for the GitHub release.
-- `npm run build`, `npm run dev` (watch), `npm run format` (Prettier on `src/`, `scripts/` and the root `.mjs` and `.md` files; the JSON files keep the 4-space indent `npm version` writes), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule and ignores three feature families Chrome supports only partially, in ways the theme doesn't depend on).
+- `scripts/version-bump.mjs`: the "version" script of `npm version`, writes the version to `manifest.json` and `versions.json`.
+- `npm run build`, `npm run dev` (watch), `npm run format` and `format:check` (Prettier on `src/`, `scripts/`, `.github/` and the root `.mjs` and `.md` files; the JSON files keep the 4-space indent `npm version` writes), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule and ignores three feature families Chrome supports only partially, in ways the theme doesn't depend on).
 - Lint baseline: no errors and 1 warning, the `!important` that overrides Obsidian's own on the Live Preview table widget. Anything beyond that is new.
 
 ## CSS conventions
@@ -58,4 +59,4 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 
 ## Releases
 
-git flow (`main`, `develop`, release branches, tags without a prefix); `.npmrc` sets `git-tag-version=false`, so `npm version` only bumps `package.json`, `manifest.json` and `versions.json`. Every release gets a `CHANGELOG.md` entry in the Common Changelog format (https://common-changelog.org), committed before the tag, with commit links on every line. Pushing the tag runs `.github/workflows/release.yml`, which builds the theme and creates a draft release with the changelog entry as notes.
+git flow (`main`, `develop`, release branches, tags without a prefix); `.npmrc` sets `git-tag-version=false`, so `npm version` only bumps `package.json`, `manifest.json` and `versions.json`. Every release gets a `CHANGELOG.md` entry in the Common Changelog format (https://common-changelog.org), committed before the tag, with commit links on every line. Every push to `develop` and `main` runs `.github/workflows/check.yml` (lint, formatting, build, Node from `.nvmrc`). Pushing the tag runs `.github/workflows/release.yml`, which checks that the tag matches the version in `manifest.json`, runs the same checks, builds the theme and creates a draft release with the changelog entry as notes.

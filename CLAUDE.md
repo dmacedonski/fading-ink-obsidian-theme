@@ -18,7 +18,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - `scripts/build.mjs`: embeds every relative `url()` as a data URL, converting TTF/OTF to WOFF2 with `scripts/woff2.mjs` (Brotli from Node, tables stored unchanged).
 - `scripts/release-notes.mjs`: prints a version's CHANGELOG entry for the GitHub release.
 - `scripts/version-bump.mjs`: the "version" script of `npm version`, writes the version to `manifest.json` and `versions.json`.
-- `npm run build`, `npm run dev` (watch), `npm run format` and `format:check` (Prettier on `src/`, `scripts/`, `.github/` and the root `.mjs` and `.md` files; the JSON files keep the 4-space indent `npm version` writes), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule and ignores three feature families Chrome supports only partially, in ways the theme doesn't depend on).
+- `npm run build`, `npm run dev` (watch), `npm run format` and `format:check` (Prettier on `src/`, `scripts/`, `.github/` and the root `.mjs`, `.md` and `.json` files except `package-lock.json`; `.editorconfig` gives JSON the 4-space indent npm writes), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule and ignores three feature families Chrome supports only partially, in ways the theme doesn't depend on).
 - Lint baseline: no errors and 1 warning, the `!important` that overrides Obsidian's own on the Live Preview table widget. Anything beyond that is new.
 
 ## CSS conventions

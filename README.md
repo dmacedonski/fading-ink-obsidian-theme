@@ -35,6 +35,7 @@ npm ci          # install the dependencies
 npm run build   # build theme.css once
 npm run dev     # rebuild after every change in src/ or fonts/
 npm run lint    # check src/ with stylelint
+npm run format  # format the sources with Prettier
 ```
 
 To work on the theme, link the repository folder into your vault's themes folder as `Fading Ink`.

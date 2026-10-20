@@ -17,7 +17,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - `fonts/`: Dancing Script (headings, note title, italics, list numbers) and Lora (text), OFL with Reserved Font Names: format conversion is fine, no subsetting or other changes. License texts: `fonts/OFL.txt`, `fonts/OFL-Lora.txt`.
 - `scripts/build.mjs`: embeds every relative `url()` as a data URL, converting TTF/OTF to WOFF2 with `scripts/woff2.mjs` (Brotli from Node, tables stored unchanged).
 - `scripts/release-notes.mjs`: prints a version's CHANGELOG entry for the GitHub release.
-- `npm run build`, `npm run dev` (watch), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule and ignores three feature families Chrome supports only partially, in ways the theme doesn't depend on).
+- `npm run build`, `npm run dev` (watch), `npm run format` (Prettier on `src/`, `scripts/` and the root `.mjs` and `.md` files; the JSON files keep the 4-space indent `npm version` writes), `npm run lint` (stylelint with stylelint-config-obsidianmd; `stylelint.config.mjs` only lets CodeMirror's `HyperMD-` classes through the kebab-case class rule and ignores three feature families Chrome supports only partially, in ways the theme doesn't depend on).
 - Lint baseline: no errors and 1 warning, the `!important` that overrides Obsidian's own on the Live Preview table widget. Anything beyond that is new.
 
 ## CSS conventions
@@ -26,7 +26,7 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 - Colors live in the `.theme-light` and `.theme-dark` blocks after `body`: the `--color-base-00…100` scale (Obsidian derives backgrounds, borders and text from it), the accent as `--accent-h/s/l`, the pigments `--color-red…pink` with `-rgb` twins, interface tones (`--mono-100`, tooltips, notices, cover), `--shadow-rgb` and the paper texture layers. Check contrast when changing them (text ≥ 7:1, muted and accent ≥ 4.5:1).
 - Style both reading view (`.markdown-rendered`) and Live Preview (`.markdown-source-view.mod-cm6`), and say when something works in one mode only.
 - Wrap hover rules in `@media (hover: hover)`, like Obsidian. Use logical properties and check RTL.
-- Comments explain why, in full sentences, wrapped at 80 columns; formatting follows Prettier (single quotes in CSS).
+- Comments explain why, in full sentences, wrapped at 80 columns; formatting follows Prettier with its defaults (`npm run format`).
 - Lint workarounds that are fine: `:where()` to equalize specificity, `:is(hr)` to separate selectors for `no-descending-specificity`, `tbody:not(:empty)` instead of `:has()` (not allowed).
 
 ## Gotchas found so far

@@ -39,4 +39,5 @@ if (end === -1) {
   end = lines.length;
 }
 
-console.log(lines.slice(start + 1, end).join("\n").trim());
+const entry = lines.slice(start + 1, end).join("\n");
+console.log(entry.trim());

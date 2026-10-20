@@ -9,6 +9,7 @@
 import { brotliCompressSync, constants } from "zlib";
 
 // Tables with an index in this list are stored by index instead of by tag
+// prettier-ignore
 const KNOWN_TAGS = [
   "cmap", "head", "hhea", "hmtx", "maxp", "name", "OS/2", "post", "cvt ",
   "fpgm", "glyf", "loca", "prep", "CFF ", "VORG", "EBDT", "EBLC", "gasp",

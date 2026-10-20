@@ -40,7 +40,7 @@ npm run format  # format the sources with Prettier
 
 The Node.js version is in `.nvmrc`. Every push to `develop` and `main` is checked on GitHub: lint, formatting and build.
 
-To work on the theme, link the repository folder into your vault's themes folder as `Fading Ink`.
+To work on the theme, link the repository folder into your vault's themes folder as `Fading Ink`. The scripts in `tools/` help test it: `app.mjs` drives a test vault in Obsidian through its command line interface, `pdf.mjs` shows the PDF export as other PDF viewers do.
 
 ### Releases
 

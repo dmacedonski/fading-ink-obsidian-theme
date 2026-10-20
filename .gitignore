@@ -145,3 +145,7 @@ dist
 
 # Theme built by `npm run build` from src/ and fonts/
 /theme.css
+
+# Files of the test tools (tools/): the test vault, screenshots, PDF checks
+# and Obsidian's app.css saved from the app, which stays local
+/.work/

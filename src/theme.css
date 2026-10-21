@@ -919,6 +919,18 @@ a.tag,
   }
 }
 
+/* Tags in properties are pills Obsidian already colors like tags, so they
+   only need the torn ends. The pill is a box of its own, a long tag wraps
+   inside it and the ends tear along all its lines. A focused pill isn't
+   torn, Obsidian draws its focus ring around it */
+.metadata-property-value[data-property-type="tags"] .multi-select-pill {
+  clip-path: polygon(var(--tape-torn-right), var(--tape-torn-left));
+
+  &:focus {
+    clip-path: none;
+  }
+}
+
 /* Footnotes are separated by a short rule at the start of the line, like in
    books, instead of the horizontal rule ornament. Its pseudo-elements can't
    be overridden here (the nested ::before and ::after get the specificity of

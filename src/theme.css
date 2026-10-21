@@ -105,7 +105,7 @@ body {
 
   /* Blockquotes, someone else's words in faded ink */
 
-  --blockquote-border-thickness: 1.5px;
+  --blockquote-border-thickness: 1px;
   --blockquote-color: var(--text-muted);
 
   /* Washi tape for tags and embedded notes: a translucent strip whose torn

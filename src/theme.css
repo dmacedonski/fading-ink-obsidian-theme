@@ -7,10 +7,10 @@
    disk. Its lowercase letters are smaller than usual (x-height 0.332 em),
    so size-adjust scales it up */
 @font-face {
-  font-family: 'Dancing Script';
+  font-family: "Dancing Script";
   font-weight: 400 700;
   size-adjust: 110%;
-  src: url('../fonts/DancingScript[wght].ttf');
+  src: url("../fonts/DancingScript[wght].ttf");
 }
 
 /* Lora font by Cyreal: Copyright 2011 The Lora Project Authors
@@ -22,37 +22,37 @@
 @font-face {
   font-family: Lora;
   font-weight: 400 700;
-  src: url('../fonts/Lora[wght].ttf');
+  src: url("../fonts/Lora[wght].ttf");
 }
 
 body {
   /* Text */
 
-  --font-text-theme: 'Lora';
+  --font-text-theme: "Lora";
 
   /* Headers */
 
-  --h1-font: 'Dancing Script';
+  --h1-font: "Dancing Script";
   --h1-weight: 400;
   --h1-size: 2.25rem;
   --h1-line-height: var(--line-height-tight);
-  --h2-font: 'Dancing Script';
+  --h2-font: "Dancing Script";
   --h2-weight: 400;
   --h2-size: 1.875rem;
   --h2-line-height: var(--line-height-tight);
-  --h3-font: 'Dancing Script';
+  --h3-font: "Dancing Script";
   --h3-weight: 400;
   --h3-size: 1.5rem;
   --h3-line-height: var(--line-height-tight);
-  --h4-font: 'Dancing Script';
+  --h4-font: "Dancing Script";
   --h4-weight: 400;
   --h4-size: 1.375rem;
   --h4-line-height: var(--line-height-tight);
-  --h5-font: 'Dancing Script';
+  --h5-font: "Dancing Script";
   --h5-weight: var(--h4-weight);
   --h5-size: var(--h4-size);
   --h5-line-height: var(--h4-line-height);
-  --h6-font: 'Dancing Script';
+  --h6-font: "Dancing Script";
   --h6-weight: var(--h4-weight);
   --h6-size: var(--h4-size);
   --h6-line-height: var(--h4-line-height);
@@ -105,7 +105,7 @@ body {
 
   /* Blockquotes, someone else's words in faded ink */
 
-  --blockquote-border-thickness: 1.5px;
+  --blockquote-border-thickness: 1px;
   --blockquote-color: var(--text-muted);
 
   /* Washi tape for tags and embedded notes: a translucent strip whose torn
@@ -395,10 +395,10 @@ body {
 /* The paper texture covers the notes in the editor, on the element that
    scrolls, and moves with the text like a sheet of paper. Embedded notes,
    table cells and other editors inside a note don't get it again */
-.workspace-leaf-content[data-type='markdown']
+.workspace-leaf-content[data-type="markdown"]
   .markdown-reading-view
   .markdown-preview-view:not(.markdown-embed *),
-.workspace-leaf-content[data-type='markdown']
+.workspace-leaf-content[data-type="markdown"]
   .markdown-source-view.mod-cm6
   .cm-scroller:not(.cm-content *) {
   background-image: var(--paper-texture);
@@ -439,7 +439,7 @@ body {
    from pushing the lines apart */
 .markdown-rendered :is(em, i),
 .markdown-source-view.mod-cm6 .cm-em {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-synthesis-style: none;
   font-size: 1.25em;
   line-height: 1;
@@ -479,7 +479,7 @@ body {
   }
 
   &::before {
-    content: '';
+    content: "";
     width: 100%;
     height: var(--hr-thickness);
     background-image: linear-gradient(
@@ -496,7 +496,7 @@ body {
   }
 
   &::after {
-    content: '§';
+    content: "§";
     display: grid;
     place-items: center;
     transform: rotate(45deg);
@@ -536,11 +536,11 @@ body {
 /* List numbers in the handwritten font. They keep the text size, a larger
    ::marker would push the items apart since it ignores line-height */
 .markdown-rendered ol > li::marker {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
 }
 
 .markdown-source-view.mod-cm6 .cm-formatting-list-ol {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   line-height: 1;
 }
 
@@ -591,7 +591,7 @@ input.task-list-item-checkbox:checked::after {
 }
 
 .markdown-rendered blockquote::before {
-  content: '';
+  content: "";
   position: absolute;
   inset-block: 0;
   inset-inline-start: calc(var(--blockquote-border-thickness) * -1);
@@ -612,7 +612,7 @@ input.task-list-item-checkbox:checked::after {
 /* Callout titles in the handwritten font, enlarged like italic text (see the
    body variables) */
 .callout-title-inner {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
 }
 
 /* Callout titles are underlined like headers, in the callout color and along
@@ -674,7 +674,7 @@ input.task-list-item-checkbox:checked::after {
 
 .markdown-rendered .markdown-embed::before,
 .markdown-source-view.mod-cm6 .markdown-embed::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: var(--embed-paper-top) var(--embed-paper-margin)
     var(--embed-paper-margin);
@@ -689,7 +689,7 @@ input.task-list-item-checkbox:checked::after {
 
 .markdown-rendered .markdown-embed::after,
 .markdown-source-view.mod-cm6 .markdown-embed::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0.1em;
   inset-inline: 0;
@@ -739,7 +739,7 @@ input.task-list-item-checkbox:checked::after {
    shown in a monospace font and the 9-character prefix is clipped off.
    A line height of 1 keeps it low in the bottom padding, away from the last
    line of code */
-.markdown-rendered pre[class^='language-']::after {
+.markdown-rendered pre[class^="language-"]::after {
   content: attr(class);
   position: absolute;
   right: var(--size-4-2);
@@ -919,6 +919,18 @@ a.tag,
   }
 }
 
+/* Tags in properties are pills Obsidian already colors like tags, so they
+   only need the torn ends. The pill is a box of its own, a long tag wraps
+   inside it and the ends tear along all its lines. A focused pill isn't
+   torn, Obsidian draws its focus ring around it */
+.metadata-property-value[data-property-type="tags"] .multi-select-pill {
+  clip-path: polygon(var(--tape-torn-right), var(--tape-torn-left));
+
+  &:focus {
+    clip-path: none;
+  }
+}
+
 /* Footnotes are separated by a short rule at the start of the line, like in
    books, instead of the horizontal rule ornament. Its pseudo-elements can't
    be overridden here (the nested ::before and ::after get the specificity of
@@ -1042,7 +1054,7 @@ a.tag,
 }
 
 .markdown-rendered .external-link:not(.metadata-container *)::after {
-  content: '';
+  content: "";
   display: inline-block;
   width: 0.825em;
   height: 0.825em;
@@ -1121,7 +1133,7 @@ a.tag,
   list-style: none;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset-inline-start: calc(-0.8em - var(--list-bullet-size) / 2);
     top: calc(0.5lh - var(--list-bullet-size) / 2);

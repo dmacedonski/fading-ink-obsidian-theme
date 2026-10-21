@@ -1,8 +1,0 @@
-{
-    "overrides": [{
-        "files": ["*.css"],
-        "options": {
-            "singleQuote": true
-        }
-    }]
-}

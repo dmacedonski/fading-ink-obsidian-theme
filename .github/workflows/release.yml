@@ -17,14 +17,32 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version-file: .nvmrc
           cache: npm
+
+      # The release carries manifest.json, so its version has to be the tag
+      - name: Check version
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          version="$(node -p "require('./manifest.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::Tag $tag doesn't match version $version in manifest.json"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The same checks as on every push, so a release can't skip them
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
 
       # theme.css isn't committed, it's built from src/ and fonts/
       - name: Build theme
-        run: |
-          npm ci
-          npm run build
+        run: npm run build
 
       - name: Create release
         env:

@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.1] - 2026-10-21
+
+### Changed
+
+- Tear the ends of tags in properties like the tags in notes ([`1d434f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/1d434f7))
+
+### Fixed
+
+- Fix the blockquote line looking thick and blurred on screens at 100% scale, it's 1px wide now ([`b169152`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/b169152))
+
 ## [0.3.0] - 2026-10-19
 
 ### Changed
@@ -55,6 +65,7 @@ _Initial release._
 - Add page breaks and styles that hold up in PDF viewers to the PDF export ([`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec), [`54c02f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/54c02f7))
 - Document installation, development and releases in the README ([`f28262d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f28262d))
 
+[0.3.1]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.1
 [0.3.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.0
 [0.2.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.2.0
 [0.1.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.1.0

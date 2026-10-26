@@ -438,10 +438,12 @@ body {
    column, and the line with it. justify-self keeps a header on its own start
    side when its direction differs from the note's, Live Preview doesn't allow
    margins on lines. Like the other fading lines, it fades into --fade-into,
-   which the PDF export sets to the background (see the end of the file) */
+   which the PDF export sets to the background (see the end of the file).
+   Previews of a heading put the heading itself in the title (marked with
+   data-level), which already has its line */
 .markdown-rendered :is(h1, h2, h3, h4, h5, h6),
 .markdown-source-view.mod-cm6 .HyperMD-header,
-.inline-title {
+.inline-title:not([data-level]) {
   --header-line-direction: to right;
 
   width: fit-content;

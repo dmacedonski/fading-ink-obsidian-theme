@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.2] - 2026-10-26
+
+### Fixed
+
+- Fix the double line under the heading in previews of links to a heading ([`e02903d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/e02903d))
+
 ## [0.3.1] - 2026-10-21
 
 ### Changed
@@ -65,6 +71,7 @@ _Initial release._
 - Add page breaks and styles that hold up in PDF viewers to the PDF export ([`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec), [`54c02f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/54c02f7))
 - Document installation, development and releases in the README ([`f28262d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f28262d))
 
+[0.3.2]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.2
 [0.3.1]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.1
 [0.3.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.0
 [0.2.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.2.0

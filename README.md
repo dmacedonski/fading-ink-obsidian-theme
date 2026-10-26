@@ -2,7 +2,13 @@
 
 An [Obsidian](https://obsidian.md) theme inspired by handwritten notes on paper. Headings and italics are set in a handwritten font, the text in a calm book serif, and the details are drawn with a pen: underlines that fade out, a hand-drawn tick, quotes in faded ink with a pen stroke in the margin, and highlights that look like strokes of a highlighter. Tags are strips of washi tape, and embedded notes are clippings taped into the page.
 
+![A note in reading view, its left half in the light mode and its right half in the dark mode](screenshots/light-and-dark.webp)
+
 The colors come from paper and iron gall ink: cream paper with a subtle texture and brown-black text in light mode, dark paper with light ink in dark mode, a sepia accent (an accent chosen in Obsidian's appearance settings still takes precedence) and historic pigments for callouts, highlights and code. The interface is toned to match, down to tooltips and shadows. PDF exports are printed on white paper.
+
+Notes keep their look while being edited in Live Preview:
+
+![The same note in Live Preview, with a list, a table, an embedded note taped in like a clipping and a task list](screenshots/live-preview.webp)
 
 What each version brings is listed in the [changelog](CHANGELOG.md).
 
@@ -40,7 +46,7 @@ npm run format  # format the sources with Prettier
 
 The Node.js version is in `.nvmrc`. Every push to `develop` and `main` is checked on GitHub: lint, formatting and build.
 
-To work on the theme, link the repository folder into your vault's themes folder as `Fading Ink`. The scripts in `tools/` help test it: `app.mjs` drives a test vault in Obsidian through its command line interface, `pdf.mjs` shows the PDF export as other PDF viewers do.
+To work on the theme, link the repository folder into your vault's themes folder as `Fading Ink`. The scripts in `tools/` help test it: `app.mjs` drives a test vault in Obsidian through its command line interface, `pdf.mjs` shows the PDF export as other PDF viewers do. The screenshots are taken in `screenshots/Notebook`, a vault with sample notes that links the theme the same way.
 
 ### Releases
 

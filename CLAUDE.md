@@ -1,6 +1,6 @@
 # Fading Ink
 
-Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink that fades. Version 0.1.0 styled note content (reading view and Live Preview), 0.2.0 added the color palette (paper and iron gall ink, sepia accent, historic pigments), a paper texture and warm interface tones and shadows, 0.3.0 refined it (underlines fitted to the text, quotes in faded ink with a pen stroke, tags as washi tape, embeds as taped clippings), 0.3.1 fixed details.
+Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink that fades. Version 0.1.0 styled note content (reading view and Live Preview), 0.2.0 added the color palette (paper and iron gall ink, sepia accent, historic pigments), a paper texture and warm interface tones and shadows, 0.3.0 refined it (underlines fitted to the text, quotes in faded ink with a pen stroke, tags as washi tape, embeds as taped clippings), 0.3.1 and 0.3.2 fixed details, 1.0.0 added the empty tab drawing and the screenshots.
 
 ## Working with the user
 
@@ -49,9 +49,11 @@ Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink 
 
 ## Testing
 
-Obsidian 1.14.4 (Chromium 150) is a Flatpak. Test through what Obsidian offers to developers (its command line interface, the DevTools protocol, the styles it has loaded) rather than its files on disk. The tools in `tools/` keep their files in `.work/`, ignored by git and not cleaned like `/tmp`.
+Obsidian 1.14.5 (Chromium 150) is a Flatpak. Test through what Obsidian offers to developers (its command line interface, the DevTools protocol, the styles it has loaded) rather than its files on disk. The tools in `tools/` keep their files in `.work/`, ignored by git and not cleaned like `/tmp`.
 
 `.work/Fading Ink test/` is a test vault the user opened in Obsidian: a copy of the test note with `image.png`, a stub `Markdown Syntax.md` for its links, `app.json` and `types.json` from the user's vault, and `.obsidian/themes/Fading Ink` linking to this repository. `node tools/app.mjs` drives it through Obsidian's command line interface (`obsidian`, enabled in Settings → General), always with `vault="Fading Ink test"`; never run commands against the user's own vault.
+
+`screenshots/Notebook/` is the vault for the screenshots of the theme, in the repository: English sample notes (`Iron gall ink.md` shows nearly every styled element and embeds `Fountain pens.md`; the Polish test note stays the full test), settings for clean shots (no line numbers or spellcheck) and `.obsidian/themes/Fading Ink` linking to the repository. The user opens it with Obsidian's interface in English; Obsidian's workspace state there is ignored by git. Commands go to it with `node tools/app.mjs --notebook …`.
 
 - `reload` rebuilds and reloads the theme (the linked folder isn't watched, so it also clears Obsidian's CSS cache) and waits for it.
 - `theme light|dark`, `view reading|live|source`, `open <note>`, `scroll <line|selector>`, `shot [name]` (the window into `.work/app/`).

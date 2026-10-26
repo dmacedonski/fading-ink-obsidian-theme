@@ -1,8 +1,9 @@
 /**
- * Drives the test vault in the running Obsidian through its command line
- * interface (Settings → General → Command line interface), to check the
- * theme in the real app. Every command goes to the test vault in .work/,
- * which links the theme like a real vault, never to another vault.
+ * Drives a vault of the project in the running Obsidian through its command
+ * line interface (Settings → General → Command line interface), to check
+ * the theme in the real app. Commands go to the test vault in .work/ or,
+ * with --notebook first, to the vault for screenshots in screenshots/, which
+ * both link the theme like a real vault, never to another vault.
  *
  *   reload                     rebuilds theme.css and reloads it in the app
  *   theme light|dark           switches the color scheme
@@ -27,15 +28,21 @@
  *                              tools/pdf.mjs
  *   cli <command> [key=value…] any other command, e.g. dev:css selector=…
  *
- * Usage: $ node tools/app.mjs <command> [arguments]
+ * Usage: $ node tools/app.mjs [--notebook] <command> [arguments]
  */
 
 import { execFileSync } from "child_process";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { join, resolve } from "path";
 
-const VAULT = "Fading Ink test";
-const VAULT_DIR = join(".work", VAULT);
+const VAULTS = {
+  test: { name: "Fading Ink test", dir: ".work/Fading Ink test" },
+  notebook: { name: "Notebook", dir: "screenshots/Notebook" },
+};
+
+const argv = process.argv.slice(2);
+const { name: VAULT, dir: VAULT_DIR } =
+  argv[0] === "--notebook" ? (argv.shift(), VAULTS.notebook) : VAULTS.test;
 const THEME = "Fading Ink";
 const SHOTS = ".work/app";
 const APP_CSS = ".work/obsidian/app.css";
@@ -47,6 +54,9 @@ function obsidian(...args) {
   }).trim();
   if (output.startsWith("The CLI is unable to find Obsidian")) {
     throw new Error(`Obsidian isn't running, open the "${VAULT}" vault`);
+  }
+  if (output === "Vault not found.") {
+    throw new Error(`open ${VAULT_DIR} as a vault in Obsidian first`);
   }
   return output;
 }
@@ -84,7 +94,7 @@ const MODES = {
 
 const SCHEMES = { light: "moonstone", dark: "obsidian" };
 
-const [command, ...args] = process.argv.slice(2);
+const [command, ...args] = argv;
 
 switch (command) {
   case "reload":
@@ -145,8 +155,9 @@ switch (command) {
   }
 
   case "hover": {
-    // A real mouse move through the DevTools protocol, so :hover applies
-    let point = "1,1";
+    // A real mouse move through the DevTools protocol, so :hover applies.
+    // Off moves it out of the window, where it hovers nothing
+    let point = "-5,-5";
     if (args[0] !== "off") {
       point = evaluate(`(() => {
         const element = [...document.querySelectorAll(${JSON.stringify(args.join(" "))})]
@@ -281,7 +292,7 @@ switch (command) {
 
   default:
     console.error(
-      "Usage: node tools/app.mjs reload | theme light|dark | view reading|live|source | open <note> | scroll <line|selector> | shot [name] | hover <selector>|off | variant <file.css>|off | compare <revision>|off | eval <code> | rules <selector> [declarations] | css | cli <command> [key=value…]",
+      "Usage: node tools/app.mjs [--notebook] reload | theme light|dark | view reading|live|source | open <note> | scroll <line|selector> | shot [name] | hover <selector>|off | variant <file.css>|off | compare <revision>|off | eval <code> | rules <selector> [declarations] | css | cli <command> [key=value…]",
     );
     process.exit(1);
 }

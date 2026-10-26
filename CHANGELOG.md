@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.0] - 2026-10-26
+
+_First stable release._
+
+### Added
+
+- Add a drawing of a fountain pen writing a fading line and the paper texture to the empty tab ([`ea85c0b`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/ea85c0b))
+- Add screenshots of the theme in reading view and Live Preview to the README ([`a64b8ac`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/a64b8ac))
+
 ## [0.3.2] - 2026-10-26
 
 ### Fixed
@@ -71,6 +80,7 @@ _Initial release._
 - Add page breaks and styles that hold up in PDF viewers to the PDF export ([`8229bec`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/8229bec), [`54c02f7`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/54c02f7))
 - Document installation, development and releases in the README ([`f28262d`](https://github.com/dmacedonski/fading-ink-obsidian-theme/commit/f28262d))
 
+[1.0.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/1.0.0
 [0.3.2]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.2
 [0.3.1]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.1
 [0.3.0]: https://github.com/dmacedonski/fading-ink-obsidian-theme/releases/tag/0.3.0

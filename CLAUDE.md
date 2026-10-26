@@ -1,6 +1,6 @@
 # Fading Ink
 
-Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink that fades. Version 0.1.0 styled note content (reading view and Live Preview), 0.2.0 added the color palette (paper and iron gall ink, sepia accent, historic pigments), a paper texture and warm interface tones and shadows, 0.3.0 refined it (underlines fitted to the text, quotes in faded ink with a pen stroke, tags as washi tape, embeds as taped clippings), 0.3.1 fixed details.
+Obsidian theme by Damian Macedoński. The look: handwritten notes on paper, ink that fades. Version 0.1.0 styled note content (reading view and Live Preview), 0.2.0 added the color palette (paper and iron gall ink, sepia accent, historic pigments), a paper texture and warm interface tones and shadows, 0.3.0 refined it (underlines fitted to the text, quotes in faded ink with a pen stroke, tags as washi tape, embeds as taped clippings), 0.3.1 and 0.3.2 fixed details, 1.0.0 added the empty tab drawing and the screenshots.
 
 ## Working with the user
 
